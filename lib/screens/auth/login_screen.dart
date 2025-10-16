@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
 import '../shared/demo_data.dart';
 
 const loginSubmitButtonKey = Key('login_submit_button');
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _riderName = demoRider.name;
       _email = demoRider.email;
     });
+    Navigator.of(context).pushNamed(AppRoutes.screenCatalog);
   }
 
   @override
@@ -92,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.play_arrow),
-                  label: Text(_isSubmitting ? 'Ingresando...' : 'Entrar como Demo'),
+                  label:
+                      Text(_isSubmitting ? 'Ingresando...' : 'Explorar demo'),
                 ),
                 const SizedBox(height: 24),
                 Wrap(
