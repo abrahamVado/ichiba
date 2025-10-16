@@ -1,122 +1,170 @@
 import 'package:flutter/material.dart';
 
+import 'screens/auth/login_screen.dart';
+import 'screens/consult_screen.dart';
+import 'screens/dashboard/bank/bank_information_screen.dart';
+import 'screens/dashboard/dashboard_screen.dart';
+import 'screens/dashboard/panic/panic_button_screen.dart';
+import 'screens/dashboard/profile/rider_profile_screen.dart';
+import 'screens/dashboard/reservations/reservation_screen.dart';
+import 'screens/dashboard/support/contact_us_screen.dart';
+import 'screens/dashboard/trip/current_trip_details_screen.dart';
+import 'screens/dashboard/trip/driver_profile_screen.dart';
+import 'screens/dashboard/travel/travel_history_screen.dart';
+import 'screens/map_report_screen.dart';
+import 'screens/ride_creation/auction_screen.dart';
+import 'screens/ride_creation/ride_map_screen.dart';
+import 'screens/ride_creation/route_selection_screen.dart';
+import 'screens/shared/demo_data.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const IchibaApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+//1.- IchibaApp configura el MaterialApp y delega en el catálogo de pantallas.
+class IchibaApp extends StatelessWidget {
+  const IchibaApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ichiba Screens',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ScreenCatalog(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+//2.- ScreenCatalog lista accesos directos a cada pantalla implementada.
+class ScreenCatalog extends StatelessWidget {
+  const ScreenCatalog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final entries = _buildEntries();
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+      appBar: AppBar(title: const Text('Catálogo de pantallas')), 
+      body: ListView.separated(
+        padding: const EdgeInsets.all(24),
+        itemCount: entries.length,
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
+        itemBuilder: (context, index) {
+          final entry = entries[index];
+          return ListTile(
+            tileColor: Theme.of(context).colorScheme.surfaceVariant,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            title: Text(entry.title),
+            subtitle: Text(entry.description),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => entry.builder()),
             ),
-          ],
-        ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  //3.- _buildEntries centraliza los enlaces con títulos y descripciones útiles.
+  List<_ScreenEntry> _buildEntries() {
+    return [
+      _ScreenEntry(
+        title: 'Login',
+        description: 'Flujo simplificado de acceso demo.',
+        builder: () => const LoginScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Dashboard',
+        description: 'Panel con métricas, viaje actual y accesos.',
+        builder: () => const DashboardScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Historial de viajes',
+        description: 'Listado paginado con viajes completados.',
+        builder: () => const TravelHistoryScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Perfil del rider',
+        description: 'Formulario editable con validaciones básicas.',
+        builder: () => const RiderProfileScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Información bancaria',
+        description: 'Formulario para capturar datos de depósito.',
+        builder: () => const BankInformationScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Reservas',
+        description: 'Agenda de viajes programados con selección de fecha.',
+        builder: () => const ReservationScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Botón de pánico',
+        description: 'Protocolo de confirmación para alertas.',
+        builder: () => PanicButtonScreen(trip: demoCurrentTrip),
+      ),
+      _ScreenEntry(
+        title: 'Perfil del conductor',
+        description: 'Resumen de datos del viaje en curso.',
+        builder: () => DriverProfileScreen(trip: demoCurrentTrip),
+      ),
+      _ScreenEntry(
+        title: 'Detalles del viaje',
+        description: 'Información extendida del servicio aceptado.',
+        builder: () => CurrentTripDetailsScreen(trip: demoCurrentTrip),
+      ),
+      _ScreenEntry(
+        title: 'Soporte',
+        description: 'Listado de canales de contacto disponibles.',
+        builder: () => const ContactUsScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Subasta de viaje',
+        description: 'Simulación de ofertas y conteo regresivo.',
+        builder: () => const AuctionScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Selección de ruta',
+        description: 'Formulario con mapa ilustrativo y estimaciones.',
+        builder: () => const RouteSelectionScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Mapa del recorrido',
+        description: 'Visualización estática con pasos sugeridos.',
+        builder: () => RideMapScreen(
+          origin: 'Parque México, CDMX',
+          destination: 'Aeropuerto AICM, CDMX',
+          distanceKm: 12.4,
+          durationMinutes: 28,
+          latitude: 19.38,
+          longitude: -99.12,
+        ),
+      ),
+      _ScreenEntry(
+        title: 'Reportes en mapa',
+        description: 'Captura y listado de incidentes urbanos.',
+        builder: () => const MapReportScreen(),
+      ),
+      _ScreenEntry(
+        title: 'Consulta de folios',
+        description: 'Filtros y búsqueda puntual de reportes.',
+        builder: () => const ConsultScreen(),
+      ),
+    ];
+  }
+}
+
+//4.- _ScreenEntry agrupa los metadatos de cada destino en el catálogo.
+class _ScreenEntry {
+  const _ScreenEntry({
+    required this.title,
+    required this.description,
+    required this.builder,
+  });
+
+  final String title;
+  final String description;
+  final Widget Function() builder;
 }
