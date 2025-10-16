@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'routes.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/consult_screen.dart';
 import 'screens/dashboard/bank/bank_information_screen.dart';
@@ -32,12 +33,16 @@ class IchibaApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
+      routes: {
+        //2.- Registramos rutas nombradas para reutilizarlas desde otros flujos.
+        AppRoutes.screenCatalog: (_) => const ScreenCatalog(),
+      },
       home: const ScreenCatalog(),
     );
   }
 }
 
-//2.- ScreenCatalog lista accesos directos a cada pantalla implementada.
+//3.- ScreenCatalog lista accesos directos a cada pantalla implementada.
 class ScreenCatalog extends StatelessWidget {
   const ScreenCatalog({super.key});
 
@@ -67,7 +72,7 @@ class ScreenCatalog extends StatelessWidget {
     );
   }
 
-  //3.- _buildEntries centraliza los enlaces con títulos y descripciones útiles.
+  //4.- _buildEntries centraliza los enlaces con títulos y descripciones útiles.
   List<_ScreenEntry> _buildEntries() {
     return [
       _ScreenEntry(
@@ -156,7 +161,7 @@ class ScreenCatalog extends StatelessWidget {
   }
 }
 
-//4.- _ScreenEntry agrupa los metadatos de cada destino en el catálogo.
+//5.- _ScreenEntry agrupa los metadatos de cada destino en el catálogo.
 class _ScreenEntry {
   const _ScreenEntry({
     required this.title,
