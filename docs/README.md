@@ -22,12 +22,14 @@ This README captures all pending tasks required to wire the taxi demo journey an
 - Provide two actions on the new screen: **Guardar** returning to `registro_de_llegada_a_base/index.html` and **Continuar** taking the user to `registro_de_llegada_a_base_mapa/index.html`.
 - Update the existing "Registrar manualmente" link in `registro_de_llegada_a_base/index.html` so it routes to the new page and include the same navigation scripting pattern as the other screens.
 
-## 3. Design rechazo de viaje confirmation screen
+## 3. Design rechazo de viaje confirmation screen ✅ Completado
+- Status: Pantalla implementada con navegación actualizada desde el mapa y retorno al flujo principal.
 - Add `rechazo_de_viaje/index.html` beside the other demo folders, using the dark card styling from `regreso_a_base_asignada/index.html`.
 - Include a short justification textarea and preset reasons such as **Fuera de cobertura** or **Otro motivo**, reusing the checklist styling from `verificacion_del_vehiculo/index.html`.
 - Modify the **Rechazar** button in `registro_de_llegada_a_base_mapa/index.html` to navigate to the new screen, and wire the confirmation action there to proceed to `regreso_a_base_asignada/index.html` (or whichever queue screen product decides).
 
-## 4. Build historial de jornadas overview screen
+## 4. Build historial de jornadas overview screen ⏳ En progreso
+- Status: Se creó la pantalla inicial con filtros de periodo, totales resumidos y navegación de regreso al resumen para continuar con iteraciones futuras.
 - Create a folder `historial_de_jornadas/` with an `index.html` that imports the shared stylesheet and renders past jornadas using the card layout from `resumen_de_jornada/index.html`.
 - Add filters for date range and totals, leveraging the grid rows from the existing resumen page for consistency.
 - Update the **Ver historial completo** button in `resumen_de_jornada/index.html` to navigate to the new screen, and include a back control there to return to `resumen_de_jornada/index.html`.
