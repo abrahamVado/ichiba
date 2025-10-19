@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Confirmar rechazo – Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="../styles/main.css" rel="stylesheet" />
+</head>
+<body class="page-rechazo">
+<main class="wrap" role="main">
+  <section class="card" aria-labelledby="rechazo-title">
+    <header class="head">
+      <div class="icon" aria-hidden="true">⚠️</div>
+      <div>
+        <h1 id="rechazo-title" class="title">Confirmar rechazo del viaje</h1>
+        <p class="lead">Seleccione el motivo y agregue un comentario breve para notificar a la central.</p>
+      </div>
+    </header>
+
+    <fieldset class="reasons" aria-labelledby="rechazo-title">
+      <legend class="sr-only">Motivos de rechazo</legend>
+      <label class="reason">
+        <input type="checkbox" />
+        <span>Fuera de cobertura</span>
+      </label>
+      <label class="reason">
+        <input type="checkbox" />
+        <span>Pasajero no localizado</span>
+      </label>
+      <label class="reason">
+        <input type="checkbox" />
+        <span>Condiciones inseguras</span>
+      </label>
+      <label class="reason">
+        <input type="checkbox" />
+        <span>Otro motivo</span>
+      </label>
+    </fieldset>
+
+    <div class="field">
+      <label for="note">Justificación breve</label>
+      <textarea id="note" placeholder="Describa lo sucedido…"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn ghost" type="button">Volver al mapa</button>
+      <button class="btn primary" type="button">Confirmar rechazo</button>
+    </div>
+  </section>
+</main>
+
+<script>
+//1.- Identificar los botones principales de la pantalla de rechazo.
+const backButton = document.querySelector('.btn.ghost');
+const confirmButton = document.querySelector('.btn.primary');
+//2.- Permitir regresar al mapa original si la persona decide cancelar el rechazo.
+if (backButton) {
+  backButton.addEventListener('click', () => {
+    window.location.href = '../registro_de_llegada_a_base_mapa/';
+  });
+}
+//3.- Avanzar hacia la pantalla de regreso a base al confirmar el rechazo del viaje.
+if (confirmButton) {
+  confirmButton.addEventListener('click', () => {
+    window.location.href = '../regreso_a_base_asignada/';
+  });
+}
+</script>
+</body>
+</html>

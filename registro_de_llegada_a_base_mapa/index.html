@@ -35,10 +35,10 @@ if (acceptButton) {
     window.location.href = '../trayecto_con_tarjeta_de_pasajera/';
   });
 }
-//3.- Mantener navegación disponible aun en la acción de rechazo.
+//3.- Redirigir el rechazo hacia la pantalla dedicada de confirmación.
 if (rejectButton) {
   rejectButton.addEventListener('click', () => {
-    window.location.href = '../trayecto_con_tarjeta_de_pasajera/';
+    window.location.href = '../rechazo_de_viaje/';
   });
 }
 </script>
