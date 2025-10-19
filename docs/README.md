@@ -2,7 +2,7 @@
 
 This README captures all pending tasks required to wire the taxi demo journey and to add the missing screens referenced during review.
 
-## 1. Wire demo flow between existing screens
+## 1. Wire demo flow between existing screens ✅ Completado
 - Create a new `index.html` at the repository root that loads `styles/main.css`, mirrors the hero layout from `bienvenido_a_tu_jornada/index.html`, and offers a **Comenzar demo** button that links to `login_oscuro/index.html`.
 - Add inline scripts (before each closing `</body>`) to the following pages so the primary CTAs advance to the next step of the journey and any "Atrás" controls go back:
   - `login_oscuro/index.html` → `terminos_y_condiciones/index.html`
@@ -16,7 +16,8 @@ This README captures all pending tasks required to wire the taxi demo journey an
   - `resumen_de_jornada/index.html` → `turno_finalizado/index.html`
 - Ensure any secondary navigation (e.g., alternative login paths) also uses `window.location.href` so testers can traverse the demo without editing URLs manually.
 
-## 2. Add manual llegada a base form screen
+## 2. Add manual llegada a base form screen ✅ Completado
+- Status: Se creó la pantalla dedicada y se conectó desde el flujo principal para admitir registros manuales completos.
 - Create a new folder `registro_de_llegada_manual/` with `index.html` that reuses the form styling from `bienvenido_a_tu_jornada/index.html` to collect **Base**, **Hora de llegada**, and **Comentarios**.
 - Provide two actions on the new screen: **Guardar** returning to `registro_de_llegada_a_base/index.html` and **Continuar** taking the user to `registro_de_llegada_a_base_mapa/index.html`.
 - Update the existing "Registrar manualmente" link in `registro_de_llegada_a_base/index.html` so it routes to the new page and include the same navigation scripting pattern as the other screens.

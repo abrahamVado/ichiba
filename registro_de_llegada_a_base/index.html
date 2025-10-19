@@ -35,7 +35,7 @@
   </svg>
 
   <button class="btn" type="button">Escanear código QR</button>
-  <a class="link" href="#" role="button">Registrar manualmente</a>
+  <a class="link" href="../registro_de_llegada_manual/" role="button">Registrar manualmente</a>
 
   <div class="place">Minatitlán</div>
 
@@ -48,17 +48,17 @@
 //1.- Seleccionar los accesos disponibles para registrar la llegada.
 const scanButton = document.querySelector('.btn');
 const manualLink = document.querySelector('.link');
-//2.- Dirigir ambos accesos a la vista del mapa de registro.
+//2.- Dirigir el escaneo del QR a la vista del mapa de registro.
 if (scanButton) {
   scanButton.addEventListener('click', () => {
     window.location.href = '../registro_de_llegada_a_base_mapa/';
   });
 }
-//3.- Evitar navegación vacía en el enlace y llevar al mismo destino.
+//3.- Encauzar el registro manual hacia el nuevo formulario dedicado.
 if (manualLink) {
   manualLink.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href = '../registro_de_llegada_a_base_mapa/';
+    window.location.href = '../registro_de_llegada_manual/';
   });
 }
 </script>
