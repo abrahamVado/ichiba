@@ -1,0 +1,56 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trayecto + tarjeta</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4a016}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font:16px/1.35 Inter,system-ui,sans-serif}
+#map{position:absolute;inset:0}
+.bottom{position:absolute;left:0;right:0;bottom:0;padding:18px}
+.card{max-width:620px;margin:0 auto;background:#111827;color:#f3f4f6;
+  border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.35);padding:14px 16px;
+  display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center}
+.avatar{width:52px;height:52px;border-radius:50%;background:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop') center/cover}
+.name{font-size:20px;font-weight:800}
+.sub{color:#cbd5e1;font-size:14px}
+.tag{background:#111;border:2px solid #374151;color:#e5e7eb;font-weight:800;width:42px;height:42px;border-radius:50%;display:grid;place-items:center}
+</style></head><body>
+<div id="map"></div>
+
+<div class="bottom">
+  <div class="card">
+    <div class="avatar"></div>
+    <div>
+      <div class="name">Laura Hernández</div>
+      <div class="sub">En línea · 10 min restante</div>
+      <div class="sub">Plaza Cristál, Minatitlán</div>
+    </div>
+    <div class="tag">10</div>
+  </div>
+</div>
+
+<script>
+let map, route, car;
+function initMap(){
+  const a={lat:18.000,lng:-94.571}, b={lat:18.015,lng:-94.540};
+  map=new google.maps.Map(document.getElementById('map'),{
+    center:{lat:18.007,lng:-94.555},zoom:13,disableDefaultUI:true,
+    styles:[
+      {featureType:"poi",stylers:[{visibility:"off"}]},
+      {featureType:"transit",stylers:[{visibility:"off"}]},
+      {featureType:"road",elementType:"geometry",stylers:[{color:"#e5e7eb"}]},
+      {featureType:"water",stylers:[{color:"#d7e3f4"}]},
+      {elementType:"labels.text.fill",stylers:[{color:"#6b7280"}]},
+      {elementType:"labels.text.stroke",stylers:[{color:"#ffffff"}]}
+    ]
+  });
+  const path=[a,{lat:18.004,lng:-94.566},{lat:18.009,lng:-94.557},{lat:18.012,lng:-94.548},b];
+  route=new google.maps.Polyline({path,strokeColor:"#d4a016",strokeWeight:6,map});
+  car=new google.maps.Marker({position:a,map,
+    icon:{path:google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,scale:6,fillColor:"#d4a016",fillOpacity:1,strokeColor:"#a0720f",strokeWeight:2}});
+  map.fitBounds(new google.maps.LatLngBounds(a,b));
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&v=weekly&callback=initMap"></script>
+</body></html>

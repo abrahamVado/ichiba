@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Términos y privacidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0d0f;--ink:#f5d67a;--sub:#d1b054;--gold:#d4a016}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.35 Inter,system-ui,sans-serif}
+.wrap{max-width:680px;margin:24px auto 34px;padding:0 18px}
+.h1{font-size:44px;font-weight:900;line-height:1.1;margin:10px 0 14px}
+.p{color:var(--sub);font-size:18px;margin:0 0 24px}
+.hr{height:1px;background:#2a2d32;margin:18px 0}
+.controls{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-top:30px}
+.chk{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.box{width:22px;height:22px;border:3px solid var(--ink);border-radius:3px;display:grid;place-items:center}
+.box[data-on="1"]::after{content:"✓";font-weight:900}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+.back{width:48px;height:48px;border-radius:50%;background:#0f1115;border:2px solid #2a2d32;color:var(--ink);display:grid;place-items:center}
+.next{appearance:none;border:2px solid var(--ink);background:#0f1115;color:var(--ink);font-weight:900;border-radius:16px;padding:12px 18px}
+</style>
+<script>
+function toggle(){const b=document.querySelector('.box');b.dataset.on=b.dataset.on==='1'?'0':'1';}
+</script>
+</head>
+<body>
+<main class="wrap">
+  <div class="h1">Consulta el aviso de privacidad y acepta los términos de RED TOSUR</div>
+  <p class="p">Al seleccionar "Acepto", afirmo que he revisado y acepto los Términos de uso y el Aviso de privacidad. Tengo al menos 18 años.</p>
+
+  <div class="hr"></div>
+
+  <div class="controls">
+    <div class="chk"><span>Aceptar</span></div>
+    <div class="box" data-on="0" onclick="toggle()" role="checkbox" aria-checked="false" aria-label="Aceptar"></div>
+  </div>
+
+  <div class="nav">
+    <button class="back" aria-label="Atrás">←</button>
+    <button class="next" aria-label="Siguiente">Siguiente →</button>
+  </div>
+</main>
+</body>
+</html>

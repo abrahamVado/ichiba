@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Verificación del vehículo – Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfbfb;
+    --ink:#111827;
+    --muted:#4b5563;
+    --brand:#d4a016;          /* dorado */
+    --brand-600:#b8870f;
+    --card:#ffffff;
+    --line:#e5e7eb;
+    --ok:#16a34a;
+    --warn:#b8870f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.35 "Inter",system-ui,Segoe UI,Arial,sans-serif}
+  .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px}
+  header{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-bottom:6px}
+  .logo{
+    width:56px;height:56px;border-radius:14px;display:grid;place-items:center;
+    background:radial-gradient(110% 120% at 30% 20%, #ffefb2, #dba313 60%, #8a6b10 100%);
+    box-shadow:0 2px 0 #a77c0f inset,0 1px 3px rgba(0,0,0,.12)
+  }
+  .logo svg{width:34px;height:34px;color:#111827}
+  .brand{font-weight:800;font-size:34px;line-height:1}
+  .brand span{display:block}
+  h2.title{font-size:34px;font-weight:800;margin:12px 0 8px}
+  p.lead{color:var(--muted);font-size:18px;margin:0 0 16px}
+  /* car illustration */
+  .car{
+    width:100%;height:140px;margin:8px 0 16px;display:grid;place-items:center
+  }
+  .car svg{max-width:420px;width:100%;height:auto}
+  /* checklist */
+  .list{background:var(--card);border:1.5px solid #e7c35a;border-radius:14px;padding:8px 8px 2px}
+  .item{
+    display:grid;grid-template-columns:30px 1fr 96px;gap:14px;align-items:center;
+    padding:14px 10px;border-bottom:1px solid var(--line)
+  }
+  .item:last-child{border-bottom:none}
+  .icon{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--brand);border:2px solid var(--brand);background:#fff}
+  .label{font-size:20px}
+  .actions{justify-self:end;display:grid;grid-auto-flow:column;gap:10px}
+  .chip{
+    width:46px;height:40px;border-radius:10px;display:grid;place-items:center;
+    border:2px solid var(--brand);background:#fff;font-weight:800;color:#6b7280
+  }
+  .chip.ok{color:#fff;border-color:var(--brand);background:linear-gradient(#31c24d,#16a34a)}
+  .chip.warn{color:var(--warn);background:#fff}
+  /* textarea + camera */
+  .field{
+    margin:16px 2px 4px
+  }
+  .field label{display:block;font-weight:700;margin:0 0 8px;font-size:18px}
+  .note{
+    display:grid;grid-template-columns:1fr 48px;gap:10px;align-items:stretch
+  }
+  textarea{
+    resize:vertical;min-height:56px;border:2px solid var(--line);border-radius:12px;
+    padding:12px 12px;font:inherit;background:#fff
+  }
+  .cam{
+    border:2px solid var(--line);border-radius:12px;display:grid;place-items:center;background:#fff;color:#6b7280
+  }
+  /* primary button */
+  .btn{
+    width:100%;margin-top:14px;appearance:none;border:0;border-radius:12px;
+    background:linear-gradient(180deg,#e6bd54,#c49116);
+    color:#111;padding:16px 18px;font-weight:800;font-size:20px;cursor:pointer
+  }
+  @media (max-width:380px){
+    .brand{font-size:30px}
+    h2.title{font-size:28px}
+    .label{font-size:18px}
+  }
+</style>
+</head>
+<body>
+<main class="wrap" role="main">
+  <header aria-label="Marca">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h2l1-2h4l1 2h2a4 4 0 0 1 3.9 3l1 4a3 3 0 0 1-2.9 4H7a3 3 0 0 1-2.9-4l1-4a4 4 0 0 1 3.9-3z"/></svg>
+    </div>
+    <div class="brand"><span>RED</span><span>TOSUR</span></div>
+  </header>
+
+  <h2 class="title">Verificación del vehículo</h2>
+  <p class="lead">Complete la revisión antes de finalizar su turno. Cualquier anomalía será reportada al área de mantenimiento.</p>
+
+  <div class="car" aria-hidden="true">
+    <!-- simple sedan -->
+    <svg viewBox="0 0 560 180">
+      <defs>
+        <linearGradient id="gold" x1="0" x2="1">
+          <stop offset="0" stop-color="#ffefb2"/><stop offset="1" stop-color="#d4a016"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="280" cy="150" rx="210" ry="10" fill="#e5e7eb"/>
+      <path d="M65 115c10-35 60-50 120-58 30-20 55-30 95-30 35 0 71 8 96 21 23 12 41 30 56 52l25 3c14 2 26 11 26 23 0 12-11 22-24 22H96c-21 0-35-14-31-33z" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+      <path d="M186 47h92c18 0 47 7 63 15 18 9 45 28 61 49H175c-6-22-1-45 11-64z" fill="#0f172a" opacity=".86"/>
+      <circle cx="170" cy="138" r="26" fill="#1f2937"/>
+      <circle cx="170" cy="138" r="16" fill="url(#gold)"/>
+      <circle cx="410" cy="138" r="26" fill="#1f2937"/>
+      <circle cx="410" cy="138" r="16" fill="url(#gold)"/>
+      <path d="M110 120h45v10h-45zM430 120h45v10h-45z" fill="#1f2937" opacity=".2"/>
+      <path d="M105 82h92M335 82h80" stroke="url(#gold)" stroke-width="3" opacity=".8"/>
+    </svg>
+  </div>
+
+  <section class="list" aria-labelledby="chk">
+    <div class="item">
+      <div class="icon">🚗</div>
+      <div class="label">Exterior limpio</div>
+      <div class="actions">
+        <div class="chip ok">✓</div>
+        <div class="chip warn">!</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="icon">🧼</div>
+      <div class="label">Interior sin objetos olvidados</div>
+      <div class="actions">
+        <div class="chip ok">✓</div>
+        <div class="chip warn">!</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="icon">🔧</div>
+      <div class="label">Llantas en buen estado</div>
+      <div class="actions">
+        <div class="chip ok">✓</div>
+        <div class="chip warn">!</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="icon">⛽</div>
+      <div class="label">Combustible suficiente</div>
+      <div class="actions">
+        <div class="chip ok">✓</div>
+        <div class="chip warn">!</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="icon">💡</div>
+      <div class="label">Luces y cámaras funcionando</div>
+      <div class="actions">
+        <div class="chip ok">✓</div>
+        <div class="chip warn">!</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="icon">🧾</div>
+      <div class="label">Entrega de efectivo (si aplica)</div>
+      <div class="actions">
+        <div class="chip" style="border-color:#e0c27a;color:#d4a016">✓</div>
+        <div class="chip" style="border-color:#e0c27a;color:#d4a016;background:#fff"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="field">
+    <label>Observaciones (opcional)</label>
+    <div class="note">
+      <textarea placeholder="Escriba sus observaciones…"></textarea>
+      <div class="cam" aria-label="Agregar foto">📷</div>
+    </div>
+  </div>
+
+  <button class="btn" type="button">Finalizar revisión y cerrar turno</button>
+</main>
+</body>
+</html>

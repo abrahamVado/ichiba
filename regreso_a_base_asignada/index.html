@@ -1,0 +1,61 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regreso a base – Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4a016}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font:16px/1.35 Inter,system-ui,sans-serif}
+#map{position:absolute;inset:0}
+.top{position:absolute;left:0;right:0;top:0;padding:18px;pointer-events:none}
+.banner{max-width:720px;margin:0 auto;border-radius:0 0 22px 22px;
+  background:rgba(8,9,12,.86);box-shadow:0 18px 40px rgba(0,0,0,.45);padding:22px 18px 110px;color:#fff}
+.title{font-size:34px;font-weight:900;color:#f6e1a8;margin:4px 0 6px}
+.sub{color:#d6d7da}
+.pill{position:absolute;transform:translate(-50%,-50%);background:#e9c862;color:#111;
+  border-radius:10px;padding:6px 10px;font-weight:800;box-shadow:0 8px 18px rgba(201,150,23,.35)}
+</style></head><body>
+<div id="map"></div>
+<div class="top">
+  <div class="banner">
+    <div class="title">Regreso a base asignada</div>
+    <div class="sub">Siga la ruta indicada para regresar a su base de operaciones. No podrá recibir nuevos viajes hasta confirmar su llegada.</div>
+  </div>
+</div>
+<div id="pill" class="pill">8&nbsp;min</div>
+
+<script>
+let map, route;
+function initMap(){
+  const start={lat:18.001,lng:-94.574}, end={lat:18.017,lng:-94.537};
+  map=new google.maps.Map(document.getElementById('map'),{
+    center:{lat:18.008,lng:-94.556},zoom:13,disableDefaultUI:true,
+    styles:[
+      {elementType:"geometry",stylers:[{color:"#0f1115"}]},
+      {elementType:"labels.text.fill",stylers:[{color:"#616161"}]},
+      {featureType:"road",elementType:"geometry",stylers:[{color:"#1c2026"}]},
+      {featureType:"water",stylers:[{color:"#0c1117"}]},
+      {featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}
+    ]
+  });
+  const path=[start,{lat:18.006,lng:-94.564},{lat:18.012,lng:-94.551},end];
+  route=new google.maps.Polyline({path,strokeColor:"#d4a016",strokeOpacity:1,strokeWeight:6,map});
+  // position pill near last bend
+  const pillPos=path[2];
+  const proj=map.getProjection?map.getProjection():null;
+  function placePill(){
+    const scale=Math.pow(2,map.getZoom());
+    const bounds=map.getBounds(); if(!bounds) return;
+    const nw=map.getProjection().fromLatLngToPoint(bounds.getNorthEast());
+    const se=map.getProjection().fromLatLngToPoint(bounds.getSouthWest());
+    const worldPoint=map.getProjection().fromLatLngToPoint(new google.maps.LatLng(pillPos));
+    const x=(worldPoint.x-se.x)/(nw.x-se.x)*window.innerWidth;
+    const y=(worldPoint.y-nw.y)/(se.y-nw.y)*window.innerHeight;
+    const el=document.getElementById('pill'); el.style.left=x+"px"; el.style.top=y+"px";
+  }
+  google.maps.event.addListenerOnce(map,'idle',placePill);
+  map.addListener('bounds_changed',placePill);
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&v=weekly&callback=initMap"></script>
+</body></html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Resumen de jornada – Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfbfb;
+    --ink:#111827;
+    --muted:#4b5563;
+    --card:#ffffff;
+    --brand:#d4a016;     /* dorado */
+    --brand-600:#b8870f;
+    --ring:#e7c35a;
+    --ok:#16a34a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.35 "Inter",system-ui,Segoe UI,Arial,sans-serif;
+    display:grid; place-items:start; min-height:100vh;
+  }
+  .wrap{max-width:480px; width:100%; margin:24px auto 40px; padding:0 16px}
+  header{display:flex; align-items:center; gap:12px; margin-bottom:8px}
+  .logo{
+    width:56px; height:56px; border-radius:14px; position:relative;
+    background:
+      radial-gradient(110% 120% at 30% 20%, #ffefb2, #dba313 60%, #8a6b10 100%);
+    box-shadow:0 2px 0 #a77c0f inset, 0 1px 3px rgba(0,0,0,.12);
+    display:grid; place-items:center;
+  }
+  /* taxi glyph */
+  .logo svg{width:34px; height:34px; color:#111827; filter:drop-shadow(0 1px 0 rgba(255,255,255,.4))}
+  .brand h1{
+    margin:0; line-height:1; font-weight:800; letter-spacing:.2px; font-size:34px;
+  }
+  .brand h1 span{display:block}
+  .title{
+    font-size:34px; font-weight:800; margin:10px 0 6px;
+  }
+  .lead{
+    color:var(--muted); font-size:18px; margin:0 0 18px;
+  }
+  .card{
+    background:var(--card);
+    border:2px solid var(--ring);
+    border-radius:14px;
+    padding:18px 18px 8px;
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+  }
+  .row{
+    display:grid; grid-template-columns:1fr auto; gap:12px;
+    align-items:center; padding:14px 6px; border-bottom:1px solid #eee;
+  }
+  .row:last-child{border-bottom:none}
+  .label{font-size:22px}
+  .label small{display:block; color:var(--muted); font-size:18px; margin-top:2px}
+  .value{font-size:26px; font-weight:800}
+  .km,.hrs{letter-spacing:.3px}
+  /* donut chart with conic-gradient */
+  .donut{
+    width:112px; height:112px; place-self:end;
+    background:
+      radial-gradient(#fff 36%, transparent 37%),
+      conic-gradient(var(--brand) 0 290deg, #cbd5e1 290deg 330deg, #9ca3af 330deg 360deg);
+    border-radius:50%;
+    box-shadow:0 2px 0 rgba(0,0,0,.04) inset;
+  }
+  .actions{margin:18px 0 10px; display:grid; gap:12px}
+  .btn{
+    appearance:none; border:0; cursor:pointer;
+    font-weight:800; font-size:22px; padding:16px 18px;
+    border-radius:12px; transition:filter .15s ease;
+  }
+  .btn.primary{background:var(--brand); color:#111}
+  .btn.primary:hover{filter:brightness(.95)}
+  .btn.ghost{
+    background:#fff; color:#111; border:2px solid #e5e7eb;
+  }
+  /* footer demo line */
+  .fine{color:var(--muted); font-size:14px; margin-top:10px}
+  /* responsiveness */
+  @media (max-width:380px){
+    .title{font-size:28px}
+    .label{font-size:18px}
+    .value{font-size:22px}
+  }
+</style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <header aria-label="Marca">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Taxi">
+          <path d="M7 7h2l1-2h4l1 2h2a4 4 0 0 1 3.874 2.97l1.01 4.04A3 3 0 0 1 17 18H7a3 3 0 0 1-2.884-3.99l1.01-4.04A4 4 0 0 1 7 7Zm-.82 7a1 1 0 1 0 0 2h1.64a1 1 0 1 0 0-2H6.18Zm10.82 0a1 1 0 1 0 0 2h1.64a1 1 0 1 0 0-2H17Z"/>
+        </svg>
+      </div>
+      <div class="brand" aria-hidden="true">
+        <h1><span style="color:#111">RED</span><span style="color:#111">TOSUR</span></h1>
+      </div>
+    </header>
+
+    <h2 class="title">Resumen de jornada.</h2>
+    <p class="lead">Gracias por su servicio. A continuación se muestra el resumen de su turno.</p>
+
+    <section class="card" aria-labelledby="resumen">
+      <div class="row">
+        <div class="label">Viajes completados</div>
+        <div class="value">7</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Horas de servicio</div>
+        <div class="value hrs">8&nbsp;h&nbsp;15&nbsp;min</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Kilómetros recorridos</div>
+        <div class="value km">94&nbsp;km</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Pagos en línea</div>
+        <div class="value">$&nbsp;420,00&nbsp;MXN</div>
+      </div>
+
+      <div class="row">
+        <div>
+          <div class="label">Efectivo entregado</div>
+          <small>en base</small>
+        </div>
+        <div class="value">$&nbsp;380,00&nbsp;MXN</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Reportes pendientes<br><small>0</small></div>
+        <div class="donut" aria-label="Gráfico de estado" role="img"></div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="btn primary" type="button">Cerrar turno y salir</button>
+      <button class="btn ghost" type="button">Ver historial completo</button>
+    </div>
+
+    <p class="fine">Demo UI sin datos reales.</p>
+  </main>
+</body>
+</html>
