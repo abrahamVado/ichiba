@@ -23,6 +23,24 @@
 </div>
 
 <script>
+//1.- Detectar los elementos interactivos del resumen del viaje.
+const rideCard = document.querySelector('.card');
+const bottomBar = document.querySelector('.bottom');
+//2.- Permitir que cualquier toque en la tarjeta continúe al regreso a base.
+if (rideCard) {
+  rideCard.addEventListener('click', () => {
+    window.location.href = '../regreso_a_base_asignada/';
+  });
+}
+//3.- Extender la navegación a la barra inferior para mantener consistencia.
+if (bottomBar) {
+  bottomBar.addEventListener('click', () => {
+    window.location.href = '../regreso_a_base_asignada/';
+  });
+}
+</script>
+
+<script>
 //1.- Preparar referencias de mapa, ruta y marcador de vehículo.
 let map, route, car;
 

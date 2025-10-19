@@ -26,6 +26,24 @@
 </div>
 
 <script>
+//1.- Localizar los botones de decisión del viaje.
+const acceptButton = document.querySelector('.btn.primary');
+const rejectButton = document.querySelector('.btn.ghost');
+//2.- Continuar con el flujo del trayecto al aceptar el viaje.
+if (acceptButton) {
+  acceptButton.addEventListener('click', () => {
+    window.location.href = '../trayecto_con_tarjeta_de_pasajera/';
+  });
+}
+//3.- Mantener navegación disponible aun en la acción de rechazo.
+if (rejectButton) {
+  rejectButton.addEventListener('click', () => {
+    window.location.href = '../trayecto_con_tarjeta_de_pasajera/';
+  });
+}
+</script>
+
+<script>
 //1.- Definir referencias globales para el mapa, la ruta y el marcador.
 let map, route, car;
 

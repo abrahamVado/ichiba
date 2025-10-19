@@ -39,5 +39,24 @@
     <rect x="144" y="30" width="16" height="20" fill="none"/>
   </svg>
 </main>
+
+<script>
+//1.- Referenciar el formulario y los botones disponibles en la pantalla.
+const loginForm = document.querySelector('.form');
+const qrButton = document.querySelector('.btn.ghost');
+//2.- Redirigir el envío del formulario al paso de verificación vehicular.
+if (loginForm) {
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    window.location.href = '../verificacion_del_vehiculo/';
+  });
+}
+//3.- Alinear la acción de escanear QR con el mismo flujo para la demo.
+if (qrButton) {
+  qrButton.addEventListener('click', () => {
+    window.location.href = '../verificacion_del_vehiculo/';
+  });
+}
+</script>
 </body>
 </html>
