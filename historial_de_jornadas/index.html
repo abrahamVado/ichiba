@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Historial de jornadas – Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet">
+</head>
+<body class="page-historial">
+  <main class="wrap" role="main">
+    <header aria-label="Marca">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Taxi">
+          <path d="M7 7h2l1-2h4l1 2h2a4 4 0 0 1 3.874 2.97l1.01 4.04A3 3 0 0 1 17 18H7a3 3 0 0 1-2.884-3.99l1.01-4.04A4 4 0 0 1 7 7Zm-.82 7a1 1 0 1 0 0 2h1.64a1 1 0 1 0 0-2H6.18Zm10.82 0a1 1 0 1 0 0 2h1.64a1 1 0 1 0 0-2H17Z" />
+        </svg>
+      </div>
+      <div class="brand" aria-hidden="true">
+        <h1><span style="color:#111">RED</span><span style="color:#111">TOSUR</span></h1>
+      </div>
+    </header>
+
+    <h2 class="title">Historial de jornadas.</h2>
+    <p class="lead">Revise jornadas anteriores, filtre por periodo y consulte los totales clave.</p>
+
+    <section class="card filters" aria-labelledby="filtros">
+      <div class="row">
+        <label class="label" for="fecha-inicio">Fecha de inicio</label>
+        <input id="fecha-inicio" type="date" class="value" />
+      </div>
+      <div class="row">
+        <label class="label" for="fecha-fin">Fecha de fin</label>
+        <input id="fecha-fin" type="date" class="value" />
+      </div>
+      <div class="row">
+        <label class="label" for="buscar">Buscar por base o nota</label>
+        <input id="buscar" type="search" placeholder="Ej. Base Central" class="value" />
+      </div>
+      <div class="row actions">
+        <button class="btn primary" type="button">Aplicar filtros</button>
+        <button class="btn ghost" type="button">Limpiar</button>
+      </div>
+    </section>
+
+    <section class="card resumen" aria-labelledby="totales">
+      <h3 id="totales">Totales del periodo</h3>
+      <div class="row">
+        <div class="label">Viajes</div>
+        <div class="value">28</div>
+      </div>
+      <div class="row">
+        <div class="label">Horas activas</div>
+        <div class="value hrs">32&nbsp;h&nbsp;10&nbsp;min</div>
+      </div>
+      <div class="row">
+        <div class="label">Ingresos</div>
+        <div class="value">$&nbsp;1,720.00&nbsp;MXN</div>
+      </div>
+      <div class="row">
+        <div class="label">Reportes pendientes</div>
+        <div class="value">1</div>
+      </div>
+    </section>
+
+    <section class="listado" aria-label="Listado de jornadas pasadas">
+      <article class="card jornada" aria-labelledby="jornada-1">
+        <header class="row">
+          <div>
+            <h3 id="jornada-1">Jornada 14 de agosto</h3>
+            <small>Base: Central | 6 viajes | 08:00 – 16:00</small>
+          </div>
+          <div class="value">$&nbsp;320.00&nbsp;MXN</div>
+        </header>
+        <p>Turno sin incidencias. Se entregó efectivo en tiempo y forma.</p>
+      </article>
+
+      <article class="card jornada" aria-labelledby="jornada-2">
+        <header class="row">
+          <div>
+            <h3 id="jornada-2">Jornada 13 de agosto</h3>
+            <small>Base: Sur | 7 viajes | 09:00 – 17:15</small>
+          </div>
+          <div class="value">$&nbsp;410.00&nbsp;MXN</div>
+        </header>
+        <p>Se registró un reporte por pasajero que olvidó pertenencias. Atención concluida.</p>
+      </article>
+
+      <article class="card jornada" aria-labelledby="jornada-3">
+        <header class="row">
+          <div>
+            <h3 id="jornada-3">Jornada 12 de agosto</h3>
+            <small>Base: Norte | 5 viajes | 07:30 – 14:45</small>
+          </div>
+          <div class="value">$&nbsp;280.00&nbsp;MXN</div>
+        </header>
+        <p>Turno parcial para cubrir horario matutino. Sin reportes adicionales.</p>
+      </article>
+    </section>
+
+    <div class="actions">
+      <button class="btn ghost" type="button">Volver al resumen</button>
+    </div>
+
+    <p class="fine">Demo UI sin datos reales.</p>
+  </main>
+
+  <script>
+  //1.- Preparar referencias de controles para filtros y navegación.
+  const applyButton = document.querySelector('.filters .btn.primary');
+  const clearButton = document.querySelector('.filters .btn.ghost');
+  const backButton = document.querySelector('.actions .btn.ghost');
+  const inputs = document.querySelectorAll('.filters input');
+  //2.- Simular la aplicación de filtros avisando al usuario.
+  if (applyButton) {
+    applyButton.addEventListener('click', () => {
+      window.alert('Filtros aplicados al historial (demo).');
+    });
+  }
+  //3.- Limpiar los campos para permitir nuevos criterios.
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      inputs.forEach((input) => {
+        if (input.type === 'date' || input.type === 'search') {
+          input.value = '';
+        }
+      });
+    });
+  }
+  //4.- Retomar el flujo principal regresando al resumen.
+  if (backButton) {
+    backButton.addEventListener('click', () => {
+      window.location.href = '../resumen_de_jornada/';
+    });
+  }
+  </script>
+</body>
+</html>
