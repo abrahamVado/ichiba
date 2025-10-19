@@ -1,0 +1,176 @@
+/* //1.- Global reset and shared utilities */
+:root{color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font:16px/1.35 "Inter",system-ui,Segoe UI,Arial,sans-serif;color:#111827;background:#ffffff}
+main{display:block}
+button,input,textarea{font:inherit}
+
+/* //2.- Página "Bienvenido a tu jornada" */
+body.page-bienvenido{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink)}
+body.page-bienvenido .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px;text-align:center}
+body.page-bienvenido .pin{width:88px;height:88px;margin:10px auto 8px;position:relative;display:grid;place-items:center}
+body.page-bienvenido .pin .badge{width:88px;height:88px;border-radius:50%;background:radial-gradient(110% 120% at 30% 20%,#ffefb2,#dba313 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 2px 10px rgba(0,0,0,.12);display:grid;place-items:center;position:relative;z-index:2}
+body.page-bienvenido .pin:after{content:"";position:absolute;inset:44px 22px -22px;transform:skewY(-10deg);background:radial-gradient(60% 80% at 50% 0,#c79618,#8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.9}
+body.page-bienvenido .pin svg{width:40px;height:40px;color:#111111}
+body.page-bienvenido h1{font-size:40px;font-weight:900;margin:8px 0 10px;letter-spacing:.2px}
+body.page-bienvenido .title{font-size:30px;font-weight:800;margin:8px 0 2px}
+body.page-bienvenido .lead{font-size:18px;color:var(--ink);font-weight:800}
+body.page-bienvenido .form{margin:18px 0}
+body.page-bienvenido .input{width:100%;background:var(--card);border:2px solid var(--line);color:var(--ink);border-radius:14px;padding:16px;font:inherit;margin:12px 0;text-align:left}
+body.page-bienvenido .btn{width:100%;appearance:none;border:0;border-radius:14px;padding:16px 18px;font-weight:800;font-size:20px;cursor:pointer;margin:10px 0}
+body.page-bienvenido .btn.primary{color:#111111;background:linear-gradient(180deg,#e9c862,#c89617);box-shadow:0 6px 18px rgba(201,150,23,.25)}
+body.page-bienvenido .btn.ghost{color:#111111;background:#ffffff;border:2px solid var(--line)}
+body.page-bienvenido .fine{color:#6b7280;margin:14px 0 8px}
+body.page-bienvenido .skyline{margin:10px auto 0;width:160px;color:var(--brand)}
+@media (max-width:380px){body.page-bienvenido h1{font-size:34px}body.page-bienvenido .title{font-size:26px}}
+
+/* //3.- Página "Login oscuro" */
+body.page-login-oscuro{--bg:#0c0d0f;--card:#111315;--line:#272a2f;--ink:#f3f4f6;--muted:#9ca3af;--gold:#d4a016;background:radial-gradient(1000px 500px at 50% -100px,#121418,#0b0c0e),var(--bg);color:var(--ink)}
+body.page-login-oscuro .wrap{max-width:520px;margin:28px auto 40px;padding:0 16px}
+body.page-login-oscuro .logo{display:grid;place-items:center;margin:10px 0 12px}
+body.page-login-oscuro .badge{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(120% 130% at 30% 20%,#ffefb2,#dba313 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 10px 22px rgba(0,0,0,.55)}
+body.page-login-oscuro .badge svg{width:48px;height:48px;color:#111111}
+body.page-login-oscuro .brand{font-size:36px;font-weight:900;text-align:center;margin:8px 0 12px;color:#f5d67a}
+body.page-login-oscuro .label{font-size:18px;margin:12px 0 8px}
+body.page-login-oscuro .input-wrap{display:grid;grid-template-columns:72px 1fr 44px;gap:0;align-items:center;background:#f1f3ef;color:#111111;border-radius:14px;overflow:hidden;border:2px solid var(--line)}
+body.page-login-oscuro .flag{display:grid;place-items:center;background:#ffffff;height:54px}
+body.page-login-oscuro .flag span{font-size:22px}
+body.page-login-oscuro .input{height:54px;border:0;padding:0 12px;background:#eef0ea;color:#111111}
+body.page-login-oscuro .icon{display:grid;place-items:center;height:54px;background:#e7e8e3}
+body.page-login-oscuro .btn{width:100%;margin:12px 0;border-radius:14px;padding:14px 18px;font-weight:900;font-size:20px;appearance:none;border:0}
+body.page-login-oscuro .btn.primary{background:#000000;border:2px solid #000000;color:#ffffff}
+body.page-login-oscuro .sep{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;color:#a3a3a3;margin:10px 0}
+body.page-login-oscuro .sep:before,body.page-login-oscuro .sep:after{content:"";height:1px;background:#2a2d32}
+body.page-login-oscuro .alt{display:grid;gap:10px}
+body.page-login-oscuro .alt .btn{background:#1a1d22;border:2px solid #2a2d32;color:#e5e7eb;font-weight:800}
+body.page-login-oscuro .notice{color:#a3a3a3;font-size:13px;text-align:center;margin-top:16px}
+
+/* //4.- Página "Registro de llegada a base" */
+body.page-registro-base{--bg:#f8f8f8;--ink:#0f172a;--muted:#6b7280;--brand:#d4a016;--brand-700:#b8870f;--line:#e5e7eb;background:var(--bg);color:var(--ink)}
+body.page-registro-base .wrap{max-width:520px;margin:20px auto 40px;padding:0 18px;text-align:center;position:relative}
+body.page-registro-base .wrap:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 50% -200px,rgba(0,0,0,.035),transparent 60%),repeating-linear-gradient(25deg,transparent 0 44px,rgba(0,0,0,.03) 44px 45px),repeating-linear-gradient(-18deg,transparent 0 60px,rgba(0,0,0,.025) 60px 61px);filter:contrast(.9) brightness(1.02)}
+body.page-registro-base .pin{width:84px;height:84px;margin:6px auto 8px;position:relative;display:grid;place-items:center}
+body.page-registro-base .pin .badge{width:84px;height:84px;border-radius:50%;background:radial-gradient(110% 120% at 30% 20%,#ffefb2,#dba313 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 2px 10px rgba(0,0,0,.12);display:grid;place-items:center;position:relative;z-index:2}
+body.page-registro-base .pin:after{content:"";position:absolute;inset:42px 20px -18px;transform:skewY(-10deg);background:radial-gradient(60% 80% at 50% 0,#c79618,#8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.92}
+body.page-registro-base .pin svg{width:38px;height:38px;color:#111111}
+body.page-registro-base h1{font-size:38px;font-weight:900;margin:8px 0 2px;letter-spacing:.2px}
+body.page-registro-base .title{font-size:34px;font-weight:900;margin:12px 0 6px}
+body.page-registro-base .lead{font-size:18px;color:#1f2937;margin:0 0 18px}
+body.page-registro-base .qr{width:78px;height:78px;margin:6px auto 16px;color:var(--brand)}
+body.page-registro-base .btn{width:100%;appearance:none;border:0;border-radius:16px;padding:16px 18px;font-weight:800;font-size:20px;cursor:pointer;margin:8px 0 10px;background:linear-gradient(180deg,#e9c862,#c89617);color:#111111;box-shadow:0 8px 22px rgba(201,150,23,.25)}
+body.page-registro-base .link{display:block;margin:6px 0 18px;font-weight:700}
+body.page-registro-base .place{color:#9ca3af;font-size:22px;margin:2px 0 18px}
+body.page-registro-base .locator{width:40px;height:40px;margin:0 auto;color:var(--brand)}
+@media (max-width:380px){body.page-registro-base h1{font-size:32px}body.page-registro-base .title{font-size:28px}}
+
+/* //5.- Página "Registro de llegada con mapa" */
+body.page-registro-mapa{--gold:#d4a016;--ink:#0f172a;--line:#e7c35a;color:var(--ink);min-height:100vh}
+body.page-registro-mapa #map{position:absolute;inset:0;min-height:100vh}
+body.page-registro-mapa .overlay{position:absolute;left:0;right:0;bottom:0;padding:18px;pointer-events:none}
+body.page-registro-mapa .sheet{max-width:560px;margin:0 auto;background:#ffffff;border:2px solid var(--line);border-radius:18px;box-shadow:0 14px 34px rgba(0,0,0,.18);padding:18px;pointer-events:auto}
+body.page-registro-mapa .h1{font-weight:900;font-size:28px;margin:0 0 10px}
+body.page-registro-mapa .row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 0}
+body.page-registro-mapa .dot{width:18px;height:18px;border-radius:50%;border:3px solid #111111}
+body.page-registro-mapa .btn{width:100%;border:0;border-radius:16px;padding:14px 18px;font-weight:900;font-size:20px;cursor:pointer}
+body.page-registro-mapa .btn.primary{background:linear-gradient(#e9c862,#c89617);color:#111111;margin-top:8px}
+body.page-registro-mapa .btn.ghost{background:#ffffff;border:2px solid #e5e7eb;margin-top:10px}
+
+/* //6.- Página "Regreso a base asignada" */
+body.page-regreso-base{--gold:#d4a016;color:#ffffff;min-height:100vh}
+body.page-regreso-base #map{position:absolute;inset:0;min-height:100vh}
+body.page-regreso-base .top{position:absolute;left:0;right:0;top:0;padding:18px;pointer-events:none}
+body.page-regreso-base .banner{max-width:720px;margin:0 auto;border-radius:0 0 22px 22px;background:rgba(8,9,12,.86);box-shadow:0 18px 40px rgba(0,0,0,.45);padding:22px 18px 110px;color:#ffffff}
+body.page-regreso-base .title{font-size:34px;font-weight:900;color:#f6e1a8;margin:4px 0 6px}
+body.page-regreso-base .sub{color:#d6d7da}
+body.page-regreso-base .pill{position:absolute;transform:translate(-50%,-50%);background:#e9c862;color:#111111;border-radius:10px;padding:6px 10px;font-weight:800;box-shadow:0 8px 18px rgba(201,150,23,.35)}
+
+/* //7.- Página "Resumen de jornada" */
+body.page-resumen{--bg:#fbfbfb;--ink:#111827;--muted:#4b5563;--card:#ffffff;--brand:#d4a016;--brand-600:#b8870f;--ring:#e7c35a;--ok:#16a34a;background:var(--bg);color:var(--ink);display:grid;place-items:start;min-height:100vh}
+body.page-resumen .wrap{max-width:480px;width:100%;margin:24px auto 40px;padding:0 16px}
+body.page-resumen header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+body.page-resumen .logo{width:56px;height:56px;border-radius:14px;position:relative;background:radial-gradient(110% 120% at 30% 20%,#ffefb2,#dba313 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 1px 3px rgba(0,0,0,.12);display:grid;place-items:center}
+body.page-resumen .logo svg{width:34px;height:34px;color:#111827;filter:drop-shadow(0 1px 0 rgba(255,255,255,.4))}
+body.page-resumen .brand h1{margin:0;line-height:1;font-weight:800;letter-spacing:.2px;font-size:34px}
+body.page-resumen .brand h1 span{display:block}
+body.page-resumen .title{font-size:34px;font-weight:800;margin:10px 0 6px}
+body.page-resumen .lead{color:var(--muted);font-size:18px;margin:0 0 18px}
+body.page-resumen .card{background:var(--card);border:2px solid var(--ring);border-radius:14px;padding:18px 18px 8px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+body.page-resumen .row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 6px;border-bottom:1px solid #eee}
+body.page-resumen .row:last-child{border-bottom:none}
+body.page-resumen .label{font-size:22px}
+body.page-resumen .label small{display:block;color:var(--muted);font-size:18px;margin-top:2px}
+body.page-resumen .value{font-size:26px;font-weight:800}
+body.page-resumen .km,body.page-resumen .hrs{letter-spacing:.3px}
+body.page-resumen .donut{width:112px;height:112px;place-self:end;background:radial-gradient(#ffffff 36%,transparent 37%),conic-gradient(var(--brand) 0 290deg,#cbd5e1 290deg 330deg,#9ca3af 330deg 360deg);border-radius:50%;box-shadow:0 2px 0 rgba(0,0,0,.04) inset}
+body.page-resumen .actions{margin:18px 0 10px;display:grid;gap:12px}
+body.page-resumen .btn{appearance:none;border:0;cursor:pointer;font-weight:800;font-size:22px;padding:16px 18px;border-radius:12px;transition:filter .15s ease}
+body.page-resumen .btn.primary{background:var(--brand);color:#111111}
+body.page-resumen .btn.primary:hover{filter:brightness(.95)}
+body.page-resumen .btn.ghost{background:#ffffff;color:#111111;border:2px solid #e5e7eb}
+body.page-resumen .fine{color:var(--muted);font-size:14px;margin-top:10px}
+@media (max-width:380px){body.page-resumen .title{font-size:28px}body.page-resumen .label{font-size:18px}body.page-resumen .value{font-size:22px}}
+
+/* //8.- Página "Términos y condiciones" */
+body.page-terminos{--bg:#0c0d0f;--ink:#f5d67a;--sub:#d1b054;--gold:#d4a016;background:var(--bg);color:var(--ink)}
+body.page-terminos .wrap{max-width:680px;margin:24px auto 34px;padding:0 18px}
+body.page-terminos .h1{font-size:44px;font-weight:900;line-height:1.1;margin:10px 0 14px}
+body.page-terminos .p{color:var(--sub);font-size:18px;margin:0 0 24px}
+body.page-terminos .hr{height:1px;background:#2a2d32;margin:18px 0}
+body.page-terminos .controls{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-top:30px}
+body.page-terminos .chk{display:flex;align-items:center;gap:10px;color:var(--ink)}
+body.page-terminos .box{width:22px;height:22px;border:3px solid var(--ink);border-radius:3px;display:grid;place-items:center}
+body.page-terminos .box[data-on="1"]::after{content:"✓";font-weight:900}
+body.page-terminos .nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+body.page-terminos .back{width:48px;height:48px;border-radius:50%;background:#0f1115;border:2px solid #2a2d32;color:var(--ink);display:grid;place-items:center}
+body.page-terminos .next{appearance:none;border:2px solid var(--ink);background:#0f1115;color:var(--ink);font-weight:900;border-radius:16px;padding:12px 18px}
+
+/* //9.- Página "Trayecto con tarjeta" */
+body.page-trayecto{--gold:#d4a016;min-height:100vh}
+body.page-trayecto #map{position:absolute;inset:0;min-height:100vh}
+body.page-trayecto .bottom{position:absolute;left:0;right:0;bottom:0;padding:18px}
+body.page-trayecto .card{max-width:620px;margin:0 auto;background:#111827;color:#f3f4f6;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.35);padding:14px 16px;display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center}
+body.page-trayecto .avatar{width:52px;height:52px;border-radius:50%;background:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop') center/cover}
+body.page-trayecto .name{font-size:20px;font-weight:800}
+body.page-trayecto .sub{color:#cbd5e1;font-size:14px}
+body.page-trayecto .tag{background:#111111;border:2px solid #374151;color:#e5e7eb;font-weight:800;width:42px;height:42px;border-radius:50%;display:grid;place-items:center}
+
+/* //10.- Página "Turno finalizado" */
+body.page-turno-finalizado{--gold:#d4a016;--gold2:#c89617;--ink:#0f172a;--muted:#6b7280;background:#fff7e9;color:var(--ink)}
+body.page-turno-finalizado .wrap{max-width:560px;margin:28px auto;padding:0 16px;text-align:center}
+body.page-turno-finalizado .brand{font-size:34px;font-weight:900;margin:8px 0 16px}
+body.page-turno-finalizado .badge{width:92px;height:92px;border-radius:50%;margin:6px auto 10px;display:grid;place-items:center;background:radial-gradient(120% 130% at 30% 20%,#ffefb2,#e0bd55 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 8px 16px rgba(0,0,0,.15)}
+body.page-turno-finalizado .badge svg{width:44px;height:44px;color:#111111}
+body.page-turno-finalizado .h1{font-size:40px;font-weight:900;margin:8px 0}
+body.page-turno-finalizado .lead{font-size:18px;color:#374151;margin:0 0 16px}
+body.page-turno-finalizado .btn{appearance:none;border:0;border-radius:14px;padding:16px 18px;width:100%;max-width:360px;margin:10px auto 0;font-weight:900;font-size:20px;background:linear-gradient(#e9c862,#c89617);color:#111111;box-shadow:0 10px 24px rgba(201,150,23,.28)}
+body.page-turno-finalizado .footer{margin-top:26px}
+body.page-turno-finalizado .van{width:100%;max-width:520px;color:#d4a016}
+
+/* //11.- Página "Verificación del vehículo" */
+body.page-verificacion{--bg:#fbfbfb;--ink:#111827;--muted:#4b5563;--brand:#d4a016;--brand-600:#b8870f;--card:#ffffff;--line:#e5e7eb;--ok:#16a34a;--warn:#b8870f;background:var(--bg);color:var(--ink)}
+body.page-verificacion .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px}
+body.page-verificacion header{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-bottom:6px}
+body.page-verificacion .logo{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(110% 120% at 30% 20%,#ffefb2,#dba313 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 1px 3px rgba(0,0,0,.12)}
+body.page-verificacion .logo svg{width:34px;height:34px;color:#111827}
+body.page-verificacion .brand{font-weight:800;font-size:34px;line-height:1}
+body.page-verificacion .brand span{display:block}
+body.page-verificacion .title{font-size:34px;font-weight:800;margin:12px 0 8px}
+body.page-verificacion .lead{color:var(--muted);font-size:18px;margin:0 0 16px}
+body.page-verificacion .car{width:100%;height:140px;margin:8px 0 16px;display:grid;place-items:center}
+body.page-verificacion .car svg{max-width:420px;width:100%;height:auto}
+body.page-verificacion .list{background:var(--card);border:1.5px solid #e7c35a;border-radius:14px;padding:8px 8px 2px}
+body.page-verificacion .item{display:grid;grid-template-columns:30px 1fr 96px;gap:14px;align-items:center;padding:14px 10px;border-bottom:1px solid var(--line)}
+body.page-verificacion .item:last-child{border-bottom:none}
+body.page-verificacion .icon{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--brand);border:2px solid var(--brand);background:#ffffff}
+body.page-verificacion .label{font-size:20px}
+body.page-verificacion .actions{justify-self:end;display:grid;grid-auto-flow:column;gap:10px}
+body.page-verificacion .chip{width:46px;height:40px;border-radius:10px;display:grid;place-items:center;border:2px solid var(--brand);background:#ffffff;font-weight:800;color:#6b7280}
+body.page-verificacion .chip.ok{color:#ffffff;border-color:var(--brand);background:linear-gradient(#31c24d,#16a34a)}
+body.page-verificacion .chip.warn{color:var(--warn);background:#ffffff}
+body.page-verificacion .field{margin:16px 2px 4px}
+body.page-verificacion .field label{display:block;font-weight:700;margin:0 0 8px;font-size:18px}
+body.page-verificacion .note{display:grid;grid-template-columns:1fr 48px;gap:10px;align-items:stretch}
+body.page-verificacion textarea{resize:vertical;min-height:56px;border:2px solid var(--line);border-radius:12px;padding:12px;background:#ffffff}
+body.page-verificacion .cam{border:2px solid var(--line);border-radius:12px;display:grid;place-items:center;background:#ffffff;color:#6b7280}
+body.page-verificacion .btn{width:100%;margin-top:14px;appearance:none;border:0;border-radius:12px;background:linear-gradient(180deg,#e6bd54,#c49116);color:#111111;padding:16px 18px;font-weight:800;font-size:20px;cursor:pointer}
+@media (max-width:380px){body.page-verificacion .brand{font-size:30px}body.page-verificacion .title{font-size:28px}body.page-verificacion .label{font-size:18px}}
