@@ -4,6 +4,7 @@
 body{margin:0;font:16px/1.35 "Inter",system-ui,Segoe UI,Arial,sans-serif;color:#111827;background:#ffffff}
 main{display:block}
 button,input,textarea{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* //2.- Página "Bienvenido a tu jornada" */
 body.page-bienvenido{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink)}
@@ -174,3 +175,24 @@ body.page-verificacion textarea{resize:vertical;min-height:56px;border:2px solid
 body.page-verificacion .cam{border:2px solid var(--line);border-radius:12px;display:grid;place-items:center;background:#ffffff;color:#6b7280}
 body.page-verificacion .btn{width:100%;margin-top:14px;appearance:none;border:0;border-radius:12px;background:linear-gradient(180deg,#e6bd54,#c49116);color:#111111;padding:16px 18px;font-weight:800;font-size:20px;cursor:pointer}
 @media (max-width:380px){body.page-verificacion .brand{font-size:30px}body.page-verificacion .title{font-size:28px}body.page-verificacion .label{font-size:18px}}
+
+/* //12.- Página "Rechazo de viaje" */
+body.page-rechazo{--bg:#08090c;--card:#101217;--line:#252932;--ink:#f9fafb;--muted:#cbd5e1;--accent:#d4a016;background:radial-gradient(1200px 600px at 50% -220px,rgba(212,160,22,.25),transparent 60%),linear-gradient(#08090c,#0d1015);color:var(--ink);min-height:100vh}
+body.page-rechazo .wrap{min-height:100vh;display:grid;place-items:center;padding:28px 16px}
+body.page-rechazo .card{width:100%;max-width:520px;background:rgba(12,14,18,.9);border:2px solid var(--line);border-radius:18px;box-shadow:0 22px 46px rgba(0,0,0,.45);padding:22px 20px 24px;display:grid;gap:18px}
+body.page-rechazo .head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+body.page-rechazo .icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(212,160,22,.18);color:var(--accent);font-size:28px;border:2px solid rgba(212,160,22,.35)}
+body.page-rechazo .title{margin:0;font-size:30px;font-weight:800;color:#f6e1a8}
+body.page-rechazo .lead{margin:6px 0 0;font-size:18px;color:var(--muted)}
+body.page-rechazo .reasons{display:grid;gap:12px;margin:0;padding:0;border:0}
+body.page-rechazo .reason{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.02);border:2px solid transparent;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .15s ease,background .15s ease}
+body.page-rechazo .reason:hover{border-color:rgba(212,160,22,.45);background:rgba(255,255,255,.05)}
+body.page-rechazo .reason input{width:22px;height:22px;border-radius:6px;border:2px solid rgba(212,160,22,.55);background:rgba(0,0,0,.25);accent-color:var(--accent)}
+body.page-rechazo .field label{display:block;font-weight:700;margin:0 0 8px;color:#f8f9fb}
+body.page-rechazo textarea{width:100%;min-height:88px;border-radius:14px;border:2px solid var(--line);background:rgba(0,0,0,.25);color:var(--ink);padding:14px;resize:vertical}
+body.page-rechazo textarea::placeholder{color:rgba(203,213,225,.7)}
+body.page-rechazo .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body.page-rechazo .btn{appearance:none;border-radius:14px;padding:14px 18px;font-weight:800;font-size:18px;cursor:pointer;border:0}
+body.page-rechazo .btn.ghost{background:rgba(12,14,18,.65);border:2px solid var(--line);color:var(--muted)}
+body.page-rechazo .btn.primary{background:linear-gradient(180deg,#e9c862,#c89617);color:#111111;box-shadow:0 10px 28px rgba(212,160,22,.35)}
+@media (max-width:480px){body.page-rechazo .actions{grid-template-columns:1fr}body.page-rechazo .title{font-size:26px}}
