@@ -6,10 +6,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
 <link href="../styles/main.css" rel="stylesheet">
 <script>
-//1.- Alternar el estado visual de la casilla de aceptación.
+//1.- Alternar el estado visual y accesible de la casilla de aceptación.
 function toggle(){
   const box=document.querySelector('.box');
-  box.dataset.on=box.dataset.on==='1'?'0':'1';
+  if(!box) return;
+  const isActive=box.dataset.on==='1';
+  box.dataset.on=isActive?'0':'1';
+  box.setAttribute('aria-checked',box.dataset.on==='1'?'true':'false');
 }
 </script>
 </head>
@@ -31,22 +34,28 @@ function toggle(){
   </div>
 </main>
 
-<script>
-//1.- Ubicar los controles de navegación de la pantalla.
-const backButton = document.querySelector('.back');
-const nextButton = document.querySelector('.next');
-//2.- Configurar el botón "Atrás" para regresar al paso anterior.
-if (backButton) {
-  backButton.addEventListener('click', () => {
-    window.location.href = '../login_oscuro/';
-  });
-}
-//3.- Avanzar al proceso de bienvenida una vez aceptados los términos.
-if (nextButton) {
-  nextButton.addEventListener('click', () => {
-    window.location.href = '../bienvenido_a_tu_jornada/';
-  });
-}
-</script>
+  <script>
+  //1.- Ubicar los controles de navegación y la casilla de aceptación.
+  const backButton = document.querySelector('.back');
+  const nextButton = document.querySelector('.next');
+  const acceptanceBox = document.querySelector('.box');
+  //2.- Configurar el botón "Atrás" para regresar al paso anterior.
+  if (backButton) {
+    backButton.addEventListener('click', () => {
+      window.location.href = '../login_oscuro/';
+    });
+  }
+  //3.- Validar la aceptación antes de continuar al flujo de bienvenida.
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      const accepted = acceptanceBox && acceptanceBox.dataset.on === '1';
+      if (!accepted) {
+        window.alert('Por favor acepta los términos para continuar.');
+        return;
+      }
+      window.location.href = '../bienvenido_a_tu_jornada/';
+    });
+  }
+  </script>
 </body>
 </html>

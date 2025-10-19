@@ -28,11 +28,14 @@ This README captures all pending tasks required to wire the taxi demo journey an
 - Include a short justification textarea and preset reasons such as **Fuera de cobertura** or **Otro motivo**, reusing the checklist styling from `verificacion_del_vehiculo/index.html`.
 - Modify the **Rechazar** button in `registro_de_llegada_a_base_mapa/index.html` to navigate to the new screen, and wire the confirmation action there to proceed to `regreso_a_base_asignada/index.html` (or whichever queue screen product decides).
 
-## 4. Build historial de jornadas overview screen ⏳ En progreso
+## 4. Build historial de jornadas overview screen ✅ Completado
 - Status: Se creó la pantalla inicial con filtros de periodo, totales resumidos y navegación de regreso al resumen para continuar con iteraciones futuras.
 - Create a folder `historial_de_jornadas/` with an `index.html` that imports the shared stylesheet and renders past jornadas using the card layout from `resumen_de_jornada/index.html`.
 - Add filters for date range and totals, leveraging the grid rows from the existing resumen page for consistency.
 - Update the **Ver historial completo** button in `resumen_de_jornada/index.html` to navigate to the new screen, and include a back control there to return to `resumen_de_jornada/index.html`.
 
+## 5. Validar aceptación de términos antes de continuar ✅ Completado
+- Se actualizó `terminos_y_condiciones/index.html` para reflejar el estado accesible de la casilla y bloquear el avance hasta que se acepte el aviso.
+
 ## Testing
-- No automated tests are defined for the static demo. Manual verification involves clicking through the full sequence to confirm every CTA advances appropriately and back-links return to their origin screens.
+- No automated tests are defined for the static demo. Manual verification involves clicking through the full sequence to confirm every CTA advances apropiadamente, incluyendo la validación de términos y los regresos a sus pantallas de origen.
