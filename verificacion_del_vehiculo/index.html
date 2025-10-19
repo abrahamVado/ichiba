@@ -105,5 +105,16 @@
 
   <button class="btn" type="button">Finalizar revisión y cerrar turno</button>
 </main>
+
+<script>
+//1.- Detectar el botón que confirma la verificación.
+const verificationButton = document.querySelector('.btn');
+//2.- Enlazar la transición hacia el registro de llegada a base.
+if (verificationButton) {
+  verificationButton.addEventListener('click', () => {
+    window.location.href = '../registro_de_llegada_a_base/';
+  });
+}
+</script>
 </body>
 </html>

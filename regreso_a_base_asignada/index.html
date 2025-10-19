@@ -18,6 +18,24 @@
 <div id="pill" class="pill">8&nbsp;min</div>
 
 <script>
+//1.- Seleccionar los elementos visibles que actúan como llamada a la acción.
+const banner = document.querySelector('.banner');
+const pill = document.getElementById('pill');
+//2.- Permitir avanzar al resumen al interactuar con el banner principal.
+if (banner) {
+  banner.addEventListener('click', () => {
+    window.location.href = '../resumen_de_jornada/';
+  });
+}
+//3.- Ofrecer la misma navegación mediante la píldora de tiempo.
+if (pill) {
+  pill.addEventListener('click', () => {
+    window.location.href = '../resumen_de_jornada/';
+  });
+}
+</script>
+
+<script>
 //1.- Preparar referencias para el mapa y la ruta a mostrar.
 let map, route;
 

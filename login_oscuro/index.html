@@ -34,5 +34,23 @@
 
   <p class="notice">Al continuar, aceptas recibir llamadas o mensajes para verificación.</p>
 </main>
+
+<script>
+//1.- Obtener los botones principales y alternos de inicio de sesión.
+const primaryCta = document.querySelector('.btn.primary');
+const alternateCtas = document.querySelectorAll('.alt .btn');
+//2.- Dirigir la acción principal al paso de términos y condiciones.
+if (primaryCta) {
+  primaryCta.addEventListener('click', () => {
+    window.location.href = '../terminos_y_condiciones/';
+  });
+}
+//3.- Alinear las rutas de las opciones alternas con el flujo principal.
+alternateCtas.forEach((button) => {
+  button.addEventListener('click', () => {
+    window.location.href = '../terminos_y_condiciones/';
+  });
+});
+</script>
 </body>
 </html>

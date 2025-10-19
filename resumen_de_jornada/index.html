@@ -66,5 +66,23 @@
 
     <p class="fine">Demo UI sin datos reales.</p>
   </main>
+
+  <script>
+  //1.- Identificar los botones de cierre y navegación secundaria.
+  const closeShiftButton = document.querySelector('.btn.primary');
+  const historyButton = document.querySelector('.btn.ghost');
+  //2.- Completar el flujo del demo al cerrar el turno.
+  if (closeShiftButton) {
+    closeShiftButton.addEventListener('click', () => {
+      window.location.href = '../turno_finalizado/';
+    });
+  }
+  //3.- Mantener disponible la transición aunque se elija ver historial.
+  if (historyButton) {
+    historyButton.addEventListener('click', () => {
+      window.location.href = '../turno_finalizado/';
+    });
+  }
+  </script>
 </body>
 </html>

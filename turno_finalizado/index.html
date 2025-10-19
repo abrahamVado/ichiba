@@ -29,5 +29,16 @@
     </svg>
   </div>
 </main>
+
+<script>
+//1.- Identificar el botón final de cierre de sesión.
+const logoutButton = document.querySelector('.btn');
+//2.- Reiniciar la experiencia enviando de vuelta al inicio del demo.
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    window.location.href = '../';
+  });
+}
+</script>
 </body>
 </html>

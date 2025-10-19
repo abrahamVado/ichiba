@@ -30,5 +30,23 @@ function toggle(){
     <button class="next" aria-label="Siguiente">Siguiente →</button>
   </div>
 </main>
+
+<script>
+//1.- Ubicar los controles de navegación de la pantalla.
+const backButton = document.querySelector('.back');
+const nextButton = document.querySelector('.next');
+//2.- Configurar el botón "Atrás" para regresar al paso anterior.
+if (backButton) {
+  backButton.addEventListener('click', () => {
+    window.location.href = '../login_oscuro/';
+  });
+}
+//3.- Avanzar al proceso de bienvenida una vez aceptados los términos.
+if (nextButton) {
+  nextButton.addEventListener('click', () => {
+    window.location.href = '../bienvenido_a_tu_jornada/';
+  });
+}
+</script>
 </body>
 </html>
