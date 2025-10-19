@@ -5,62 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Inicio de turno – Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#fbfbfb;
-    --ink:#0f172a;
-    --muted:#6b7280;
-    --card:#ffffff;
-    --line:#e5e7eb;
-    --brand:#d4a016;           /* dorado */
-    --brand-700:#b8870f;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.35 "Inter",system-ui,Segoe UI,Arial,sans-serif}
-  .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px;text-align:center}
-  /* logo pin */
-  .pin{width:88px;height:88px;margin:10px auto 8px;position:relative;display:grid;place-items:center}
-  .pin .badge{
-    width:88px;height:88px;border-radius:50%;
-    background:radial-gradient(110% 120% at 30% 20%, #ffefb2, #dba313 60%, #8a6b10 100%);
-    box-shadow:0 2px 0 #a77c0f inset,0 2px 10px rgba(0,0,0,.12);
-    display:grid;place-items:center;position:relative;z-index:2
-  }
-  .pin:after{
-    content:"";position:absolute;inset:44px 22px -22px;transform:skewY(-10deg);
-    background:radial-gradient(60% 80% at 50% 0, #c79618, #8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.9
-  }
-  .pin svg{width:40px;height:40px;color:#111}
-  h1{font-size:40px;font-weight:900;margin:8px 0 10px;letter-spacing:.2px}
-  .title{font-size:30px;font-weight:800;margin:8px 0 2px}
-  .lead{font-size:18px;color:var(--ink);font-weight:800}
-  /* fields */
-  .form{margin:18px 0}
-  .input{
-    width:100%; background:var(--card); border:2px solid var(--line); color:var(--ink);
-    border-radius:14px; padding:16px 16px; font:inherit; margin:12px 0; text-align:left
-  }
-  .btn{
-    width:100%; appearance:none; border:0; border-radius:14px; padding:16px 18px;
-    font-weight:800; font-size:20px; cursor:pointer; margin:10px 0
-  }
-  .btn.primary{
-    color:#111; background:linear-gradient(180deg,#e9c862,#c89617);
-    box-shadow:0 6px 18px rgba(201,150,23,.25)
-  }
-  .btn.ghost{
-    color:#111; background:#fff; border:2px solid var(--line)
-  }
-  .fine{color:#6b7280; margin:14px 0 8px}
-  /* footer skyline */
-  .skyline{margin:10px auto 0; width:160px; color:var(--brand)}
-  @media (max-width:380px){
-    h1{font-size:34px}
-    .title{font-size:26px}
-  }
-</style>
+<link href="../styles/main.css" rel="stylesheet">
 </head>
-<body>
+<body class="page-bienvenido">
 <main class="wrap" role="main">
   <div class="pin" aria-hidden="true">
     <div class="badge">
