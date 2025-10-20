@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Califica tu viaje</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="../styles/main.css" rel="stylesheet">
+</head>
+<body class="page-pasajero-calificacion">
+<main class="wrap" role="main">
+  <header>
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-label="Estrella"><path d="m12 2.3 2.3 5 5.4.5a1 1 0 0 1 .56 1.75l-4 3.6 1.2 5.3a1 1 0 0 1-1.45 1.1L12 17.8l-4.01 2.75a1 1 0 0 1-1.45-1.1l1.2-5.3-4-3.6A1 1 0 0 1 4.3 7.8l5.4-.5Z"/></svg>
+    </div>
+    <h1 class="title">Evalúa tu experiencia</h1>
+  </header>
+  <section class="card">
+    <div class="driver">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=256&auto=format&fit=crop" alt="Conductor Laura Martínez">
+      <div class="driver-info">
+        <strong>Laura Martínez</strong>
+        <span>Toyota Prius Azul · Placas TOS-4821</span>
+      </div>
+    </div>
+    <div>
+      <p>¿Cómo calificarías el servicio recibido?</p>
+      <div class="stars" role="radiogroup" aria-label="Calificación del viaje">
+        <button class="star" type="button" data-value="1" aria-label="1 estrella">★</button>
+        <button class="star" type="button" data-value="2" aria-label="2 estrellas">★</button>
+        <button class="star" type="button" data-value="3" aria-label="3 estrellas">★</button>
+        <button class="star" type="button" data-value="4" aria-label="4 estrellas">★</button>
+        <button class="star" type="button" data-value="5" aria-label="5 estrellas">★</button>
+      </div>
+    </div>
+    <div>
+      <label for="comment">Comparte un comentario opcional</label>
+      <textarea id="comment" placeholder="Cuéntanos cómo fue el viaje"></textarea>
+    </div>
+    <button class="btn" type="button">Enviar evaluación</button>
+    <div class="confirmation" role="status">¡Gracias! Tu opinión nos ayuda a mejorar el servicio.</div>
+  </section>
+</main>
+<script>
+//1.- Seleccionar los elementos interactivos para asignar calificación y enviar.
+const stars = document.querySelectorAll('.star');
+const submitButton = document.querySelector('.btn');
+const commentField = document.querySelector('#comment');
+const confirmationBanner = document.querySelector('.confirmation');
+let selectedRating = 0;
+//2.- Permitir la selección visual y accesible de las estrellas.
+stars.forEach((star) => {
+  star.addEventListener('click', () => {
+    selectedRating = Number(star.dataset.value);
+    stars.forEach((item) => {
+      item.dataset.active = item.dataset.value <= selectedRating ? '1' : '0';
+    });
+  });
+});
+//3.- Registrar la calificación y mostrar un mensaje de confirmación.
+if (submitButton) {
+  submitButton.addEventListener('click', () => {
+    if (selectedRating === 0) {
+      window.alert('Selecciona una calificación para continuar.');
+      return;
+    }
+    if (confirmationBanner) {
+      confirmationBanner.style.display = 'block';
+      confirmationBanner.textContent = `¡Gracias! Registramos ${selectedRating} estrellas${commentField && commentField.value ? ' y tu comentario.' : '.'}`;
+    }
+    setTimeout(() => {
+      window.location.href = '../index.html';
+    }, 2200);
+  });
+}
+</script>
+</body>
+</html>

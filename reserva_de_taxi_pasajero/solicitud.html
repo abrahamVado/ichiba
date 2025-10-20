@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solicita tu taxi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="../styles/main.css" rel="stylesheet">
+</head>
+<body class="page-pasajero-solicitud">
+<main class="wrap" role="main">
+  <header>
+    <div>
+      <h1 class="title">Reserva tu taxi</h1>
+      <p class="subtitle">Ingresa origen, destino y horario de recogida.</p>
+    </div>
+    <div class="steps" aria-hidden="true">
+      <span data-active="1"></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+  <form class="request" onsubmit="return false">
+    <div>
+      <label for="pickup">Lugar de recogida</label>
+      <input class="input" id="pickup" type="text" placeholder="Ej. Av. Reforma 120, Puebla" required>
+    </div>
+    <div>
+      <label for="destination">Destino</label>
+      <input class="input" id="destination" type="text" placeholder="Ej. Aeropuerto Internacional" required>
+    </div>
+    <div class="row">
+      <div>
+        <label for="time">Hora de recogida</label>
+        <input class="input" id="time" type="datetime-local" required>
+      </div>
+      <div>
+        <label for="riders">Pasajeros</label>
+        <select id="riders" required>
+          <option value="1">1 pasajero</option>
+          <option value="2">2 pasajeros</option>
+          <option value="3">3 pasajeros</option>
+          <option value="4">4 pasajeros</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label for="notes">Notas para el conductor</label>
+      <textarea id="notes" placeholder="Añade referencias para el punto de encuentro"></textarea>
+    </div>
+    <div class="row">
+      <button class="back-link" type="button">← Cambiar cuenta</button>
+      <button class="btn" type="submit">Confirmar solicitud</button>
+    </div>
+  </form>
+</main>
+<script>
+//1.- Identificar el formulario y los controles de navegación del paso.
+const requestForm = document.querySelector('.request');
+const changeAccountButton = document.querySelector('.back-link');
+//2.- Calcular un horario sugerido si no se proporciona uno manualmente.
+if (requestForm) {
+  const timeInput = requestForm.querySelector('#time');
+  if (timeInput && !timeInput.value) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 10);
+    timeInput.value = now.toISOString().slice(0, 16);
+  }
+}
+//3.- Enviar los datos al siguiente paso del flujo de asignación.
+if (requestForm) {
+  requestForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    window.location.href = 'asignado.html';
+  });
+}
+//4.- Permitir volver al inicio de sesión para cambiar la cuenta activa.
+if (changeAccountButton) {
+  changeAccountButton.addEventListener('click', () => {
+    window.location.href = './';
+  });
+}
+</script>
+</body>
+</html>

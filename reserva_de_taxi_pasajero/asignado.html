@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tu conductor está en camino</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="../styles/main.css" rel="stylesheet">
+</head>
+<body class="page-pasajero-asignado">
+<main class="wrap" role="main">
+  <header>
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-label="Reloj"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm.75 5a.75.75 0 0 0-1.5 0v4.25c0 .2.08.39.22.53l2.75 2.75a.75.75 0 0 0 1.06-1.06L12.75 10.7Z"/></svg>
+    </div>
+    <div>
+      <h1 class="title">Conductor asignado</h1>
+      <div class="time">Recogida programada <span></span></div>
+    </div>
+  </header>
+  <section class="card">
+    <div class="driver">
+      <div class="avatar" aria-hidden="true"></div>
+      <div>
+        <div class="name">Laura Martínez</div>
+        <div class="rating" aria-label="Calificación del conductor">
+          <span>⭐️⭐️⭐️⭐️⭐️</span>
+          <span>4.9</span>
+          <span>(1,240 viajes)</span>
+        </div>
+        <p class="note">Número de contacto: +52 222 678 9012</p>
+      </div>
+    </div>
+    <div class="vehicle">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h1l1.2-4A3 3 0 0 1 10.1 5h3.8a3 3 0 0 1 2.9 2l1.2 4H19a2 2 0 0 1 2 2v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a2 2 0 0 1 2-2Zm11.1 0-1-3.3a1 1 0 0 0-1-.7H9.9a1 1 0 0 0-1 .7L7.9 11ZM6 15.5A1.5 1.5 0 1 0 7.5 14 1.5 1.5 0 0 0 6 15.5Zm12 0A1.5 1.5 0 1 0 19.5 14 1.5 1.5 0 0 0 18 15.5Z"/></svg>
+      <div class="info">
+        <strong>Toyota Prius Azul — 2023</strong>
+        <span>Placas: TOS-4821</span>
+        <span>Verificación vigente y aire acondicionado disponible.</span>
+      </div>
+    </div>
+    <p class="note">Laura llegará al punto indicado y esperará 5 minutos. Ten tu equipaje listo y confirma tu identidad al abordar.</p>
+    <div class="actions">
+      <button class="btn primary" type="button">Ya estoy a bordo</button>
+      <button class="btn ghost" type="button">Enviar mensaje</button>
+    </div>
+  </section>
+</main>
+<script>
+//1.- Localizar los elementos dinámicos para actualizar la hora estimada y los botones.
+const pickupTimePlaceholder = document.querySelector('.time span');
+const onboardButton = document.querySelector('.btn.primary');
+const messageButton = document.querySelector('.btn.ghost');
+//2.- Calcular una hora de llegada estimada a partir de la solicitud.
+if (pickupTimePlaceholder) {
+  const eta = new Date();
+  eta.setMinutes(eta.getMinutes() + 8);
+  const formatter = new Intl.DateTimeFormat('es-MX', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  pickupTimePlaceholder.textContent = `a las ${formatter.format(eta)} hrs`;
+}
+//3.- Avanzar hacia la calificación una vez finalizado el viaje.
+if (onboardButton) {
+  onboardButton.addEventListener('click', () => {
+    window.location.href = 'calificacion.html';
+  });
+}
+//4.- Simular un mensaje directo al conductor desde la aplicación.
+if (messageButton) {
+  messageButton.addEventListener('click', () => {
+    window.alert('Tu mensaje fue enviado a Laura. Te responderá en un momento.');
+  });
+}
+</script>
+</body>
+</html>
