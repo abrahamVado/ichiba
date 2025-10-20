@@ -22,6 +22,7 @@
   <p class="lead">Explora el flujo completo del turno desde este punto de partida.</p>
 
   <button class="btn primary" type="button">Comenzar demo</button>
+  <button class="btn secondary" type="button">Experiencia de pasajero</button>
 
   <p class="fine">Versiones conceptuales. Datos simulados para demostración.</p>
 
@@ -36,12 +37,19 @@
 </main>
 
 <script>
-//1.- Seleccionar el botón principal del hero de bienvenida.
-const startButton = document.querySelector('.btn.primary');
-//2.- Redirigir al flujo de autenticación al hacer clic.
-if (startButton) {
-  startButton.addEventListener('click', () => {
+//1.- Seleccionar los botones principales del hero de bienvenida.
+const driverButton = document.querySelector('.btn.primary');
+const passengerButton = document.querySelector('.btn.secondary');
+//2.- Redirigir al flujo de autenticación de conductores.
+if (driverButton) {
+  driverButton.addEventListener('click', () => {
     window.location.href = 'login_oscuro/';
+  });
+}
+//3.- Conectar el botón de pasajeros con el nuevo flujo de reserva.
+if (passengerButton) {
+  passengerButton.addEventListener('click', () => {
+    window.location.href = 'reserva_de_taxi_pasajero/';
   });
 }
 </script>
