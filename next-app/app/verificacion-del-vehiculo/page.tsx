@@ -23,10 +23,6 @@ export default function VerificacionPage() {
             </div>
           </div>
         </div>
-        <div className="brand">
-          <span>RED</span>
-          <span>TOSUR</span>
-        </div>
       </header>
 
       <h2 className="title">Verificación del vehículo</h2>

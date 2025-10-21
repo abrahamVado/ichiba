@@ -75,11 +75,7 @@ body.page-login-oscuro .notice{color:#a3a3a3;font-size:13px;text-align:center;ma
 /* //4.- Página "Registro de llegada a base" */
 body.page-registro-base{--bg:#f8f8f8;--ink:#0f172a;--muted:#6b7280;--brand:#d4a016;--brand-700:#b8870f;--line:#e5e7eb;background:var(--bg);color:var(--ink)}
 body.page-registro-base .wrap{max-width:520px;margin:20px auto 40px;padding:0 18px;text-align:center;position:relative}
-body.page-registro-base .wrap:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 50% -200px,rgba(0,0,0,.035),transparent 60%),repeating-linear-gradient(25deg,transparent 0 44px,rgba(0,0,0,.03) 44px 45px),repeating-linear-gradient(-18deg,transparent 0 60px,rgba(0,0,0,.025) 60px 61px);filter:contrast(.9) brightness(1.02)}
-body.page-registro-base .pin{width:84px;height:84px;margin:6px auto 8px;position:relative;display:grid;place-items:center}
-body.page-registro-base .pin .badge{width:84px;height:84px;border-radius:50%;background:none;box-shadow:none;display:grid;place-items:center;position:relative;z-index:2;padding:6px}
-body.page-registro-base .pin:after{content:"";position:absolute;inset:42px 20px -18px;transform:skewY(-10deg);background:radial-gradient(60% 80% at 50% 0,#c79618,#8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.92}
-body.page-registro-base .pin .badge img{width:100%;height:100%;object-fit:contain}
+
 body.page-registro-base h1{font-size:38px;font-weight:900;margin:8px 0 2px;letter-spacing:.2px}
 body.page-registro-base .title{font-size:34px;font-weight:900;margin:12px 0 6px}
 body.page-registro-base .lead{font-size:18px;color:#1f2937;margin:0 0 18px}

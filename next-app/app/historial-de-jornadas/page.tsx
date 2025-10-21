@@ -41,12 +41,6 @@ export default function HistorialPage() {
             </div>
           </div>
         </div>
-        <div className="brand" aria-hidden="true">
-          <h1>
-            <span>RED</span>
-            <span>TOSUR</span>
-          </h1>
-        </div>
       </header>
 
       <h2 className="title">Historial de jornadas.</h2>

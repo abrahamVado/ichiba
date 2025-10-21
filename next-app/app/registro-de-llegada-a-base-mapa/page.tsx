@@ -118,7 +118,7 @@ export default function RegistroMapaPage() {
       </div>
 
       <Script
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&v=weekly&callback=initRegistroMapa"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02QzKx-mrcMt9uuqP-49x6k3IhkyD0GU&v=weekly&callback=initRegistroMapa"
         strategy="afterInteractive"
       />
     </>

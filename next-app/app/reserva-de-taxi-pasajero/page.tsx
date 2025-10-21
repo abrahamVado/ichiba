@@ -29,7 +29,7 @@ export default function PasajeroLoginPage() {
         </div>
       </div>
       <div className="brand">
-        <h1>Red TOSUR Pasajero</h1>
+        <h1>Pasajero</h1>
       </div>
       <p className="lead">Ingresa para solicitar un taxi y seguir tu viaje en tiempo real.</p>
       <form className="form" onSubmit={handleSubmit}>

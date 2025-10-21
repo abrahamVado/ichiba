@@ -22,7 +22,6 @@ export default function TurnoFinalizadoPage() {
           </div>
         </div>
       </div>
-      <div className="brand">RED TOSUR</div>
       <div className="badge" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M9.5 16.5 5.8 12.8l1.4-1.4 2.3 2.3 6.3-6.3 1.4 1.4-7.7 7.7Z" />

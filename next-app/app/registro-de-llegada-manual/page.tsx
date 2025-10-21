@@ -29,8 +29,6 @@ export default function RegistroManualPage() {
           </div>
         </div>
       </div>
-
-      <h1>RED TOSUR</h1>
       <p className="title">
         Registro manual
         <br />de llegada a base

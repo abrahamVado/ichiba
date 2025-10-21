@@ -28,12 +28,6 @@ export default function RegistroBasePage() {
         </div>
       </div>
 
-      <h1>RED TOSUR</h1>
-
-      <p className="title">
-        Registro de llegada
-        <br />a base
-      </p>
       <p className="lead">Escanee el código QR asignado por la central para confirmar su ingreso y disponibilidad.</p>
 
       <svg className="qr" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">

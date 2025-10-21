@@ -22,7 +22,6 @@ export default function LoginOscuroPage() {
           </div>
         </div>
       </div>
-      <div className="brand">RED TOSUR</div>
 
       <div className="label">Introduce tu número de móvil</div>
       <div className="input-wrap">

@@ -30,11 +30,8 @@ export default function BienvenidoPage() {
         </div>
       </div>
 
-      <h1>RED TOSUR</h1>
       <p className="title">
         Bienvenido a tu jornada
-        <br />
-        Red TOSUR
       </p>
 
       <form className="form" onSubmit={handleSubmit}>
