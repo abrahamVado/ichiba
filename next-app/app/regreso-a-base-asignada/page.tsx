@@ -92,7 +92,7 @@ export default function RegresoBasePage() {
         <div className="banner" onClick={handleContinue} role="button" tabIndex={0}>
           <div className="title">Regreso a base asignada</div>
           <div className="sub">
-            Siga la ruta indicada para regresar a su base de operaciones. No podrá recibir nuevos viajes hasta confirmar su llegada.
+            El viaje ha sido cerrado correctamente. Siga la ruta indicada para presentarse en la base y reportar disponibilidad.
           </div>
         </div>
       </div>

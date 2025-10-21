@@ -65,9 +65,9 @@ export default function TrayectoPage() {
     };
   }, []);
 
-  //3.- Dirigir cualquier interacción hacia el paso de regreso a base.
+  //3.- Encaminar la interacción al formulario de finalización antes del regreso a base.
   const handleProceed = () => {
-    router.push("/regreso-a-base-asignada");
+    router.push("/finalizacion-del-viaje");
   };
 
   return (
