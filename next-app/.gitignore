@@ -1,0 +1,9 @@
+#1.- Ignorar dependencias instaladas localmente.
+node_modules/
+
+#2.- Excluir artefactos generados durante la ejecución de Next.js.
+.next/
+
+#3.- Omitir directorios y archivos de cobertura o registros temporales.
+coverage/
+*.log
