@@ -6,9 +6,8 @@ import { adminScreens, driverScreens, passengerScreens } from "../lib/screens";
 import { useBodyClass } from "../lib/useBodyClass";
 
 const DRIVER_SLUG = "login-oscuro";
-const PASSENGER_SLUG = "reserva-de-taxi-pasajero";
 const DEFAULT_DRIVER_ENTRY = "/login-oscuro";
-const DEFAULT_PASSENGER_ENTRY = "/reserva-de-taxi-pasajero";
+const PASSENGER_MENU_ENTRY = "/pasajero";
 
 //1.- Resolver las rutas de entrada consultando los catálogos y aplicando un respaldo seguro.
 function resolveEntryPath(
@@ -30,11 +29,7 @@ export default function HomePage() {
 
   //4.- Recuperar las rutas iniciales de cada flujo para alimentar los botones de llamada a la acción.
   const driverEntry = resolveEntryPath(driverScreens, DRIVER_SLUG, DEFAULT_DRIVER_ENTRY);
-  const passengerEntry = resolveEntryPath(
-    passengerScreens,
-    PASSENGER_SLUG,
-    DEFAULT_PASSENGER_ENTRY
-  );
+  const passengerEntry = PASSENGER_MENU_ENTRY;
   const adminEntry = adminScreens[0]?.path ?? "";
   const adminMenuDescription =
     adminScreens.length > 0
