@@ -1,34 +1,40 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useBodyClass } from "../../../lib/useBodyClass";
 
 //1.- Permitir calificar el viaje replicando la experiencia interactiva original.
 export default function CalificacionPage() {
   useBodyClass("page-pasajero-calificacion");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const [rating, setRating] = useState(0);
   const [confirmation, setConfirmation] = useState<string | null>(null);
+  //2.- Detectar si la pantalla proviene del seguimiento para ajustar la navegación automática.
+  const fromTracking = searchParams.get("from") === "seguimiento";
 
-  //2.- Después de mostrar la confirmación, regresar al inicio del flujo.
+  //3.- Después de mostrar la confirmación, regresar al inicio del flujo únicamente si corresponde.
   useEffect(() => {
     if (!confirmation) {
+      return;
+    }
+    if (!fromTracking) {
       return;
     }
     const timeout = window.setTimeout(() => {
       router.push("/reserva-de-taxi-pasajero");
     }, 2200);
     return () => window.clearTimeout(timeout);
-  }, [confirmation, router]);
+  }, [confirmation, fromTracking, router]);
 
-  //3.- Registrar la calificación seleccionada para reflejarla visualmente.
+  //4.- Registrar la calificación seleccionada para reflejarla visualmente.
   const handleSelectRating = (value: number) => {
     setRating(value);
   };
 
-  //4.- Validar y confirmar la evaluación enviada por la pasajera.
+  //5.- Validar y confirmar la evaluación enviada por la pasajera.
   const handleSubmit = () => {
     if (rating === 0) {
       window.alert("Selecciona una calificación para continuar.");
@@ -70,7 +76,9 @@ export default function CalificacionPage() {
           </div>
         </div>
         <div>
-          <p>¿Cómo calificarías el servicio recibido?</p>
+          <p>
+            Tu viaje ha finalizado. ¿Cómo calificarías el servicio recibido?
+          </p>
           <div className="stars" role="radiogroup" aria-label="Calificación del viaje">
             {[1, 2, 3, 4, 5].map((value) => (
               <button
