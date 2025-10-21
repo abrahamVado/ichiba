@@ -7,21 +7,34 @@ import { useBodyClass } from "../lib/useBodyClass";
 
 const DRIVER_SLUG = "login-oscuro";
 const PASSENGER_SLUG = "reserva-de-taxi-pasajero";
+const DEFAULT_DRIVER_ENTRY = "/login-oscuro";
+const DEFAULT_PASSENGER_ENTRY = "/reserva-de-taxi-pasajero";
 
-//1.- Renderizar la portada con los accesos principales sin redireccionar automáticamente.
+//1.- Resolver las rutas de entrada consultando los catálogos y aplicando un respaldo seguro.
+function resolveEntryPath(
+  entries: typeof driverScreens,
+  highlightedSlug: string,
+  fallback: string
+) {
+  return (
+    entries.find((screen) => screen.slug === highlightedSlug)?.path ??
+    entries[0]?.path ??
+    fallback
+  );
+}
+
+//2.- Renderizar la portada con los accesos principales sin redireccionar automáticamente.
 export default function HomePage() {
-  //2.- Sincronizar la clase del cuerpo para aplicar la ambientación del landing.
+  //3.- Sincronizar la clase del cuerpo para aplicar la ambientación del landing.
   useBodyClass("page-home");
 
-  //3.- Recuperar las rutas iniciales de cada flujo para alimentar los botones de llamada a la acción.
-  const driverEntry =
-    driverScreens.find((screen) => screen.slug === DRIVER_SLUG)?.path ??
-    driverScreens[0]?.path ??
-    "/login-oscuro";
-  const passengerEntry =
-    passengerScreens.find((screen) => screen.slug === PASSENGER_SLUG)?.path ??
-    passengerScreens[0]?.path ??
-    "/reserva-de-taxi-pasajero";
+  //4.- Recuperar las rutas iniciales de cada flujo para alimentar los botones de llamada a la acción.
+  const driverEntry = resolveEntryPath(driverScreens, DRIVER_SLUG, DEFAULT_DRIVER_ENTRY);
+  const passengerEntry = resolveEntryPath(
+    passengerScreens,
+    PASSENGER_SLUG,
+    DEFAULT_PASSENGER_ENTRY
+  );
   const adminEntry = adminScreens[0]?.path ?? "";
   const adminMenuDescription =
     adminScreens.length > 0
@@ -30,7 +43,7 @@ export default function HomePage() {
 
   return (
     <main className="home-layout" aria-labelledby="home-title">
-      {/* //4.- Presentar un hero con la marca, mensaje principal y accesos directos a cada flujo. */}
+      {/* //5.- Presentar un hero con la marca, mensaje principal y accesos directos a cada flujo. */}
       <section className="home-hero" aria-labelledby="home-title">
         <div className="brand-anchor" aria-hidden="true">
           <div className="pin brand-pin">
@@ -78,7 +91,7 @@ export default function HomePage() {
         </svg>
       </section>
 
-      {/* //5.- Reunir los catálogos segmentados para que cada rol descubra sus pantallas rápidamente. */}
+      {/* //6.- Reunir los catálogos segmentados para que cada rol descubra sus pantallas rápidamente. */}
       <section className="home-directory" aria-labelledby="home-directory-title">
         <h2 id="home-directory-title" className="sr-only">
           Explora los flujos disponibles
