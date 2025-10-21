@@ -24,9 +24,9 @@ export default function AsignadoPage() {
     }
   }, []);
 
-  //3.- Continuar hacia la calificación al finalizar el viaje.
+  //3.- Avanzar al seguimiento del viaje una vez que la pasajera abordó.
   const handleOnboard = () => {
-    router.push("/reserva-de-taxi-pasajero/calificacion");
+    router.push("/reserva-de-taxi-pasajero/seguimiento");
   };
 
   //4.- Simular el envío de mensajes al conductor dentro del demo.
@@ -55,6 +55,9 @@ export default function AsignadoPage() {
           <div className="time">
             Recogida programada <span ref={timeRef}></span>
           </div>
+          <p className="steps" role="status">
+            Paso 2 de 4 · Seguiremos tu viaje en tiempo real.
+          </p>
         </div>
       </header>
 
@@ -89,7 +92,7 @@ export default function AsignadoPage() {
         </p>
         <div className="actions">
           <button className="btn primary" type="button" onClick={handleOnboard}>
-            Ya estoy a bordo
+            Ver seguimiento del viaje
           </button>
           <button className="btn ghost" type="button" onClick={handleMessage}>
             Enviar mensaje
