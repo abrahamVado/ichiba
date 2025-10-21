@@ -4,7 +4,7 @@ export type ScreenInfo = {
   title: string;
   path: string;
   description: string;
-  category: "driver" | "passenger" | "shared" | "admin";
+  category: "driver" | "passenger" | "shared" | "admin" | "administrator";
 };
 
 //2.- Centralizar el catálogo de pantallas para alimentar los menús y breadcrumbs.
@@ -134,6 +134,42 @@ export const screens: ScreenInfo[] = [
     path: "/reserva-de-taxi-pasajero/calificacion",
     description: "Pantalla para evaluar el servicio al finalizar el trayecto.",
     category: "passenger"
+  },
+  {
+    slug: "administrador-login",
+    title: "Acceso administrativo",
+    path: "/administrador",
+    description:
+      "Portal de ingreso con doble factor y recordatorios coordinados con producto y diseño.",
+    category: "administrator"
+  },
+  {
+    slug: "administrador-panel",
+    title: "Panel de control",
+    path: "/administrador/panel",
+    description: "Resumen operativo diario alineado con los tableros aprobados por negocio.",
+    category: "administrator"
+  },
+  {
+    slug: "administrador-monitoreo",
+    title: "Monitoreo en vivo",
+    path: "/administrador/monitoreo",
+    description: "Supervisión de viajes activos con alertas priorizadas según los prototipos.",
+    category: "administrator"
+  },
+  {
+    slug: "administrador-flota",
+    title: "Gestión de flota",
+    path: "/administrador/flota",
+    description: "Inventario actualizado de unidades y su disponibilidad en tiempo real.",
+    category: "administrator"
+  },
+  {
+    slug: "administrador-incidentes",
+    title: "Incidentes y soporte",
+    path: "/administrador/incidentes",
+    description: "Seguimiento colaborativo de casos críticos con estados sincronizados.",
+    category: "administrator"
   }
 ];
 
@@ -141,4 +177,4 @@ export const screens: ScreenInfo[] = [
 export const driverScreens = screens.filter((screen) => screen.category === "driver");
 export const passengerScreens = screens.filter((screen) => screen.category === "passenger");
 //4.- Reservar la colección de pantallas administrativas para el nuevo flujo en desarrollo.
-export const adminScreens = screens.filter((screen) => screen.category === "admin");
+export const adminScreens = screens.filter((screen) => screen.category === "administrator");
