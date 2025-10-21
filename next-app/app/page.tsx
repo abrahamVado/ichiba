@@ -6,6 +6,8 @@ import { adminScreens, driverScreens, passengerScreens } from "../lib/screens";
 import { useBodyClass } from "../lib/useBodyClass";
 
 const DRIVER_SLUG = "login-oscuro";
+const PASSENGER_SLUG = "reserva-de-taxi-pasajero";
+const PASSENGER_MENU_PATH = "/pasajero";
 const DEFAULT_DRIVER_ENTRY = "/login-oscuro";
 const PASSENGER_MENU_ENTRY = "/pasajero";
 
@@ -60,7 +62,7 @@ export default function HomePage() {
           <Link href={driverEntry} className="home-cta home-cta--primary">
             Inicio de conductores
           </Link>
-          <Link href={passengerEntry} className="home-cta home-cta--secondary">
+          <Link href={PASSENGER_MENU_PATH} className="home-cta home-cta--secondary">
             Experiencia de pasajeras
           </Link>
           {adminEntry ? (
@@ -98,11 +100,21 @@ export default function HomePage() {
             description="Recorrido completo desde el ingreso hasta el cierre de jornada."
             screens={driverScreens}
           />
-          <ScreenMenu
-            title="Flujo de pasajeras"
-            description="Pasos para solicitar un viaje, recibir confirmación y evaluar el servicio."
-            screens={passengerScreens}
-          />
+          <div className="home-menu-card home-menu-card--passenger">
+            <ScreenMenu
+              title="Flujo de pasajeras"
+              description="Pasos para solicitar un viaje, recibir confirmación y evaluar el servicio."
+              screens={passengerScreens}
+            />
+            <div className="home-menu-card__actions" role="group" aria-label="Accesos rápidos para pasajeras">
+              <Link href={PASSENGER_MENU_PATH} className="home-menu-card__link">
+                Abrir menú dedicado de pasajeras
+              </Link>
+              <Link href={passengerEntry} className="home-menu-card__link home-menu-card__link--primary">
+                Iniciar directamente la experiencia →
+              </Link>
+            </div>
+          </div>
           <ScreenMenu title="Flujo administrativo" description={adminMenuDescription} screens={adminScreens} />
         </div>
       </section>

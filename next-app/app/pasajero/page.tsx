@@ -5,66 +5,54 @@ import { ScreenMenu } from "../../components/ScreenMenu";
 import { passengerScreens } from "../../lib/screens";
 import { useBodyClass } from "../../lib/useBodyClass";
 
-const DEFAULT_PASSENGER_ENTRY_SLUG = "reserva-de-taxi-pasajero";
-const DEFAULT_PASSENGER_ENTRY_PATH = "/reserva-de-taxi-pasajero";
+const DEFAULT_ENTRY_PATH = "/reserva-de-taxi-pasajero";
+const PERSONA_SELECTOR_PATH = "/";
+const PASSENGER_ENTRY_SLUG = "reserva-de-taxi-pasajero";
 
-//1.- Identificar la ruta inicial para que el botón principal conduzca al comienzo del flujo.
-function resolvePassengerEntryPath() {
-  return (
-    passengerScreens.find((screen) => screen.slug === DEFAULT_PASSENGER_ENTRY_SLUG)?.path ??
-    passengerScreens[0]?.path ??
-    DEFAULT_PASSENGER_ENTRY_PATH
-  );
-}
-
-//2.- Presentar el menú dedicado a pasajeras con contexto, CTA y retorno al selector principal.
+//1.- Preparar la vista dedicada para pasajeras asegurando consistencia visual y de navegación.
 export default function PassengerMenuPage() {
+  //2.- Aplicar la clase de ambientación del catálogo de pasajeras.
   useBodyClass("page-passenger-menu");
 
-  const entryPath = resolvePassengerEntryPath();
+  //3.- Determinar la ruta de arranque del flujo para el botón principal.
+  const entryPath =
+    passengerScreens.find((screen) => screen.slug === PASSENGER_ENTRY_SLUG)?.path ??
+    DEFAULT_ENTRY_PATH;
 
   return (
-    <main className="persona-layout persona-layout--passenger" aria-labelledby="passenger-menu-title">
-      {/* //3.- Ofrecer una ruta de regreso clara hacia la selección de perfiles. */}
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <ol className="breadcrumb__list">
-          <li className="breadcrumb__item">
-            <Link href="/" className="breadcrumb__link">
-              Inicio
-            </Link>
-          </li>
-          <li className="breadcrumb__item" aria-current="page">
-            Experiencia de pasajeras
-          </li>
-        </ol>
+    <main className="passenger-menu" aria-labelledby="passenger-menu-title">
+      {/* //4.- Habilitar un atajo visible para regresar al selector de personas. */}
+      <nav className="passenger-menu__breadcrumbs" aria-label="Volver a la selección de experiencias">
+        <Link href={PERSONA_SELECTOR_PATH} className="breadcrumbs__link">
+          ← Volver a seleccionar experiencia
+        </Link>
       </nav>
 
-      {/* //4.- Dar la bienvenida con contexto y acciones para iniciar el recorrido. */}
-      <header className="persona-header">
-        <span className="persona-kicker">Flujo de pasajeras</span>
-        <h1 id="passenger-menu-title" className="persona-title">
-          Explora la experiencia completa antes de tu viaje
-        </h1>
-        <p className="persona-description">
-          Conoce cada paso de la reserva, seguimiento y evaluación del servicio para comprender el
-          impacto de la plataforma desde la perspectiva de quien solicita el traslado.
+      {/* //5.- Introducir el recorrido con un encabezado contextual y acciones destacadas. */}
+      <header className="passenger-menu__header">
+        <h1 id="passenger-menu-title">Explora la experiencia de pasajeras</h1>
+        <p>
+          Sigue cada etapa de la reserva, desde el inicio de sesión hasta la evaluación del servicio, para
+          comprender cómo se guía a las personas usuarias en todo momento.
         </p>
-        <div className="persona-actions">
+        <div className="passenger-menu__actions" role="group" aria-label="Acciones principales del flujo">
           <Link href={entryPath} className="btn primary">
-            Comenzar recorrido
+            Comenzar una solicitud
           </Link>
-          <Link href="/" className="btn ghost">
-            Volver a seleccionar persona
+          <Link href="#pasajero-menu-list" className="btn ghost">
+            Revisar las pantallas
           </Link>
         </div>
       </header>
 
-      {/* //5.- Reutilizar el menú estandarizado para enlazar todas las pantallas del flujo. */}
-      <ScreenMenu
-        title="Pantallas del recorrido de pasajeras"
-        description="Accede a cada pantalla para revisar copys, componentes y transiciones específicas del flujo."
-        screens={passengerScreens}
-      />
+      {/* //6.- Reutilizar el menú centralizado para listar todas las pantallas documentadas para pasajeras. */}
+      <div id="pasajero-menu-list">
+        <ScreenMenu
+          title="Etapas del flujo de pasajeras"
+          description="Accede directamente a la pantalla que necesitas revisar o compartir."
+          screens={passengerScreens}
+        />
+      </div>
     </main>
   );
 }
