@@ -9,10 +9,28 @@ button,input,textarea{font:inherit}
 /* //2.- Página "Bienvenido a tu jornada" */
 body.page-bienvenido{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink)}
 body.page-bienvenido .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px;text-align:center}
-body.page-bienvenido .pin{width:88px;height:88px;margin:10px auto 8px;position:relative;display:grid;place-items:center}
-body.page-bienvenido .pin .badge{width:88px;height:88px;border-radius:50%;background:none;box-shadow:none;display:grid;place-items:center;position:relative;z-index:2;padding:6px}
-body.page-bienvenido .pin:after{content:"";position:absolute;inset:44px 22px -22px;transform:skewY(-10deg);background:radial-gradient(60% 80% at 50% 0,#c79618,#8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.9}
-body.page-bienvenido .pin .badge img{width:100%;height:100%;object-fit:contain}
+/* Gray circular badge for logo */
+body.page-bienvenido .pin{
+  width:120px;height:120px;margin:10px auto 8px;position:relative;
+  display:grid;place-items:center;
+}
+body.page-bienvenido .pin .badge{
+  width:120px;height:120px;border-radius:50%;
+  background:#000000;                 /* flat gray */
+  /* or try a subtle metal look:
+     background: radial-gradient(circle at 30% 30%, #f2f2f2, #d6d6d6 60%, #b8b8b8);
+  */
+  border:1px solid #a8a8a8;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.12);
+  display:grid;place-items:center;position:relative;z-index:2;padding:6px;
+}
+/* kill the gold base */
+body.page-bienvenido .pin::after{ content:none; }
+
+body.page-bienvenido .pin .badge img{
+  width:100%;height:100%;object-fit:contain;
+}
+
 body.page-bienvenido h1{font-size:40px;font-weight:900;margin:8px 0 10px;letter-spacing:.2px}
 body.page-bienvenido .title{font-size:30px;font-weight:800;margin:8px 0 2px}
 body.page-bienvenido .lead{font-size:18px;color:var(--ink);font-weight:800}
