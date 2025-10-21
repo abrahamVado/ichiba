@@ -6,6 +6,13 @@ main{display:block}
 button,input,textarea{font:inherit}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
+/* //1.1.- Estandarizar el pin de marca para todas las páginas */
+.brand-anchor{display:grid;place-items:center;margin:12px auto 8px;text-align:center}
+.brand-pin{width:120px;height:120px;position:relative;display:grid;place-items:center;margin:0}
+.brand-pin .badge{width:120px;height:120px;border-radius:50%;background:#000000;border:1px solid #a8a8a8;box-shadow:inset 0 2px 4px rgba(0,0,0,.12);display:grid;place-items:center;position:relative;z-index:2;padding:6px}
+.brand-pin .badge img{width:100%;height:100%;object-fit:contain}
+.title{text-align:center}
+
 /* //2.- Página "Bienvenido a tu jornada" */
 body.page-bienvenido{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink)}
 body.page-bienvenido .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px;text-align:center}
@@ -47,8 +54,9 @@ body.page-bienvenido .skyline{margin:10px auto 0;width:160px;color:var(--brand)}
 /* //3.- Página "Login oscuro" */
 body.page-login-oscuro{--bg:#0c0d0f;--card:#111315;--line:#272a2f;--ink:#f3f4f6;--muted:#9ca3af;--gold:#d4a016;background:radial-gradient(1000px 500px at 50% -100px,#121418,#0b0c0e),var(--bg);color:var(--ink)}
 body.page-login-oscuro .wrap{max-width:520px;margin:28px auto 40px;padding:0 16px}
-body.page-login-oscuro .logo{display:grid;place-items:center;margin:10px 0 12px}
-body.page-login-oscuro .logo img{width:120px;height:auto}
+body.page-login-oscuro .brand-anchor{margin:10px auto 12px}
+body.page-login-oscuro .brand-pin{width:118px;height:118px}
+body.page-login-oscuro .brand-pin .badge{background:#000000;border-color:#2a2d32}
 body.page-login-oscuro .brand{font-size:36px;font-weight:900;text-align:center;margin:8px 0 12px;color:#f5d67a}
 body.page-login-oscuro .label{font-size:18px;margin:12px 0 8px}
 body.page-login-oscuro .input-wrap{display:grid;grid-template-columns:72px 1fr 44px;gap:0;align-items:center;background:#f1f3ef;color:#111111;border-radius:14px;overflow:hidden;border:2px solid var(--line)}
@@ -85,6 +93,7 @@ body.page-registro-base .locator{width:40px;height:40px;margin:0 auto;color:var(
 /* //5.- Página "Registro de llegada con mapa" */
 body.page-registro-mapa{--gold:#d4a016;--ink:#0f172a;--line:#e7c35a;color:var(--ink);min-height:100vh}
 body.page-registro-mapa #map{position:absolute;inset:0;min-height:100vh}
+body.page-registro-mapa .brand-overlay{position:absolute;top:18px;left:0;right:0;display:grid;place-items:center;pointer-events:none;z-index:2}
 body.page-registro-mapa .overlay{position:absolute;left:0;right:0;bottom:0;padding:18px;pointer-events:none}
 body.page-registro-mapa .sheet{max-width:560px;margin:0 auto;background:#ffffff;border:2px solid var(--line);border-radius:18px;box-shadow:0 14px 34px rgba(0,0,0,.18);padding:18px;pointer-events:auto}
 body.page-registro-mapa .h1{font-weight:900;font-size:28px;margin:0 0 10px}
@@ -98,6 +107,7 @@ body.page-registro-mapa .btn.ghost{background:#ffffff;border:2px solid #e5e7eb;m
 body.page-regreso-base{--gold:#d4a016;color:#ffffff;min-height:100vh}
 body.page-regreso-base #map{position:absolute;inset:0;min-height:100vh}
 body.page-regreso-base .top{position:absolute;left:0;right:0;top:0;padding:18px;pointer-events:none}
+body.page-regreso-base .brand-overlay{display:grid;place-items:center;pointer-events:none;margin-bottom:12px}
 body.page-regreso-base .banner{max-width:720px;margin:0 auto;border-radius:0 0 22px 22px;background:rgba(8,9,12,.86);box-shadow:0 18px 40px rgba(0,0,0,.45);padding:22px 18px 110px;color:#ffffff}
 body.page-regreso-base .title{font-size:34px;font-weight:900;color:#f6e1a8;margin:4px 0 6px}
 body.page-regreso-base .sub{color:#d6d7da}
@@ -105,11 +115,10 @@ body.page-regreso-base .pill{position:absolute;transform:translate(-50%,-50%);ba
 
 /* //7.- Página "Resumen de jornada" */
 body.page-resumen{--bg:#fbfbfb;--ink:#111827;--muted:#4b5563;--card:#ffffff;--brand:#d4a016;--brand-600:#b8870f;--ring:#e7c35a;--ok:#16a34a;background:var(--bg);color:var(--ink);display:grid;place-items:start;min-height:100vh}
-body.page-resumen .wrap{max-width:480px;width:100%;margin:24px auto 40px;padding:0 16px}
-body.page-resumen header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-body.page-resumen .logo{width:56px;height:56px;border-radius:14px;position:relative;display:grid;place-items:center;padding:4px;background:none;box-shadow:none}
-body.page-resumen .logo img{width:100%;height:100%;object-fit:contain}
-body.page-resumen .brand h1{margin:0;line-height:1;font-weight:800;letter-spacing:.2px;font-size:34px}
+body.page-resumen .wrap{max-width:480px;width:100%;margin:24px auto 40px;padding:0 16px;display:grid;gap:18px;justify-items:center}
+body.page-resumen header{display:grid;align-items:center;gap:10px;margin:0;justify-items:center}
+body.page-resumen .brand-anchor{margin:0 auto}
+body.page-resumen .brand h1{margin:0;line-height:1;font-weight:800;letter-spacing:.2px;font-size:34px;text-align:center}
 body.page-resumen .brand h1 span{display:block}
 body.page-resumen .title{font-size:34px;font-weight:800;margin:10px 0 6px}
 body.page-resumen .lead{color:var(--muted);font-size:18px;margin:0 0 18px}
@@ -131,7 +140,7 @@ body.page-resumen .fine{color:var(--muted);font-size:14px;margin-top:10px}
 
 /* //8.- Página "Términos y condiciones" */
 body.page-terminos{--bg:#0c0d0f;--ink:#f5d67a;--sub:#d1b054;--gold:#d4a016;background:var(--bg);color:var(--ink)}
-body.page-terminos .wrap{max-width:680px;margin:24px auto 34px;padding:0 18px}
+body.page-terminos .wrap{max-width:680px;margin:24px auto 34px;padding:0 18px;display:grid;gap:18px;justify-items:center;text-align:center}
 body.page-terminos .h1{font-size:44px;font-weight:900;line-height:1.1;margin:10px 0 14px}
 body.page-terminos .p{color:var(--sub);font-size:18px;margin:0 0 24px}
 body.page-terminos .hr{height:1px;background:#2a2d32;margin:18px 0}
@@ -146,6 +155,7 @@ body.page-terminos .next{appearance:none;border:2px solid var(--ink);background:
 /* //9.- Página "Trayecto con tarjeta" */
 body.page-trayecto{--gold:#d4a016;min-height:100vh}
 body.page-trayecto #map{position:absolute;inset:0;min-height:100vh}
+body.page-trayecto .brand-overlay{position:absolute;top:18px;left:0;right:0;display:grid;place-items:center;pointer-events:none;z-index:2}
 body.page-trayecto .bottom{position:absolute;left:0;right:0;bottom:0;padding:18px}
 body.page-trayecto .card{max-width:620px;margin:0 auto;background:#111827;color:#f3f4f6;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.35);padding:14px 16px;display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center}
 body.page-trayecto .avatar{width:52px;height:52px;border-radius:50%;background:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop') center/cover}
@@ -155,9 +165,8 @@ body.page-trayecto .tag{background:#111111;border:2px solid #374151;color:#e5e7e
 
 /* //10.- Página "Turno finalizado" */
 body.page-turno-finalizado{--gold:#d4a016;--gold2:#c89617;--ink:#0f172a;--muted:#6b7280;background:#fff7e9;color:var(--ink)}
-body.page-turno-finalizado .wrap{max-width:560px;margin:28px auto;padding:0 16px;text-align:center}
-body.page-turno-finalizado .logo{width:72px;height:72px;margin:0 auto 12px;border-radius:18px;display:grid;place-items:center;padding:6px;background:none;box-shadow:none}
-body.page-turno-finalizado .logo img{width:100%;height:100%;object-fit:contain}
+body.page-turno-finalizado .wrap{max-width:560px;margin:28px auto;padding:0 16px;text-align:center;display:grid;gap:12px;justify-items:center}
+body.page-turno-finalizado .brand-anchor{margin:0 auto 4px}
 body.page-turno-finalizado .brand{font-size:34px;font-weight:900;margin:8px 0 16px}
 body.page-turno-finalizado .badge{width:92px;height:92px;border-radius:50%;margin:6px auto 10px;display:grid;place-items:center;background:radial-gradient(120% 130% at 30% 20%,#ffefb2,#e0bd55 60%,#8a6b10 100%);box-shadow:0 2px 0 #a77c0f inset,0 8px 16px rgba(0,0,0,.15)}
 body.page-turno-finalizado .badge svg{width:44px;height:44px;color:#111111}
@@ -170,10 +179,9 @@ body.page-turno-finalizado .van{width:100%;max-width:520px;color:#d4a016}
 /* //11.- Página "Verificación del vehículo" */
 body.page-verificacion{--bg:#fbfbfb;--ink:#111827;--muted:#4b5563;--brand:#d4a016;--brand-600:#b8870f;--card:#ffffff;--line:#e5e7eb;--ok:#16a34a;--warn:#b8870f;background:var(--bg);color:var(--ink)}
 body.page-verificacion .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px}
-body.page-verificacion header{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-bottom:6px}
-body.page-verificacion .logo{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;padding:4px;background:none;box-shadow:none}
-body.page-verificacion .logo img{width:100%;height:100%;object-fit:contain}
-body.page-verificacion .brand{font-weight:800;font-size:34px;line-height:1}
+body.page-verificacion header{display:grid;gap:10px;align-items:center;margin-bottom:6px;justify-items:center}
+body.page-verificacion .brand-anchor{margin:0 auto}
+body.page-verificacion .brand{font-weight:800;font-size:34px;line-height:1;text-align:center}
 body.page-verificacion .brand span{display:block}
 body.page-verificacion .title{font-size:34px;font-weight:800;margin:12px 0 8px}
 body.page-verificacion .lead{color:var(--muted);font-size:18px;margin:0 0 16px}
@@ -198,7 +206,7 @@ body.page-verificacion .btn{width:100%;margin-top:14px;appearance:none;border:0;
 
 /* //12.- Página "Rechazo de viaje" */
 body.page-rechazo{--bg:#08090c;--card:#101217;--line:#252932;--ink:#f9fafb;--muted:#cbd5e1;--accent:#d4a016;background:radial-gradient(1200px 600px at 50% -220px,rgba(212,160,22,.25),transparent 60%),linear-gradient(#08090c,#0d1015);color:var(--ink);min-height:100vh}
-body.page-rechazo .wrap{min-height:100vh;display:grid;place-items:center;padding:28px 16px}
+body.page-rechazo .wrap{min-height:100vh;display:grid;place-items:center;padding:28px 16px;gap:18px}
 body.page-rechazo .card{width:100%;max-width:520px;background:rgba(12,14,18,.9);border:2px solid var(--line);border-radius:18px;box-shadow:0 22px 46px rgba(0,0,0,.45);padding:22px 20px 24px;display:grid;gap:18px}
 body.page-rechazo .head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
 body.page-rechazo .icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(212,160,22,.18);color:var(--accent);font-size:28px;border:2px solid rgba(212,160,22,.35)}
@@ -219,10 +227,9 @@ body.page-rechazo .btn.primary{background:linear-gradient(180deg,#e9c862,#c89617
 
 /* //13.- Flujo pasajero: acceso y autenticación */
 body.page-pasajero-login{--bg:#0b1220;--card:#ffffff;--ink:#0f172a;--muted:#64748b;--accent:#d4a016;min-height:100vh;background:radial-gradient(1200px 600px at 50% -220px,rgba(212,160,22,.25),transparent 60%),linear-gradient(#05070d,#0b1220);display:grid;place-items:center;padding:24px 16px;color:var(--ink)}
-body.page-pasajero-login .card{width:100%;max-width:420px;background:var(--card);border-radius:22px;padding:26px 24px 28px;box-shadow:0 18px 44px rgba(0,0,0,.45);display:grid;gap:18px}
-body.page-pasajero-login .brand{display:flex;align-items:center;gap:12px}
-body.page-pasajero-login .badge{width:52px;height:52px;border-radius:16px;background:none;box-shadow:none;display:grid;place-items:center;padding:4px}
-body.page-pasajero-login .badge img{width:100%;height:100%;object-fit:contain}
+body.page-pasajero-login .card{width:100%;max-width:420px;background:var(--card);border-radius:22px;padding:26px 24px 28px;box-shadow:0 18px 44px rgba(0,0,0,.45);display:grid;gap:18px;justify-items:center;text-align:center}
+body.page-pasajero-login .brand-anchor{margin:0 auto 6px}
+body.page-pasajero-login .brand{display:grid;gap:6px;justify-items:center}
 body.page-pasajero-login .brand h1{margin:0;font-size:28px;font-weight:900;letter-spacing:.3px}
 body.page-pasajero-login .lead{margin:0;color:var(--muted);font-size:16px}
 body.page-pasajero-login .form{display:grid;gap:12px}
@@ -236,11 +243,11 @@ body.page-pasajero-login .secure svg{width:18px;height:18px}
 
 /* //14.- Flujo pasajero: solicitud de viaje */
 body.page-pasajero-solicitud{--bg:#f8fafc;--ink:#0f172a;--muted:#475569;--accent:#d4a016;min-height:100vh;background:linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%);color:var(--ink)}
-body.page-pasajero-solicitud .wrap{max-width:520px;margin:28px auto 36px;padding:0 18px}
-body.page-pasajero-solicitud header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+body.page-pasajero-solicitud .wrap{max-width:520px;margin:28px auto 36px;padding:0 18px;display:grid;gap:18px;justify-items:center}
+body.page-pasajero-solicitud header{display:grid;justify-content:center;justify-items:center;gap:8px;margin:0}
 body.page-pasajero-solicitud .title{margin:0;font-size:30px;font-weight:900}
 body.page-pasajero-solicitud .subtitle{margin:4px 0 0;color:var(--muted)}
-body.page-pasajero-solicitud .steps{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--muted)}
+body.page-pasajero-solicitud .steps{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--muted);justify-content:center}
 body.page-pasajero-solicitud .steps span{width:8px;height:8px;border-radius:999px;background:rgba(71,85,105,.35)}
 body.page-pasajero-solicitud .steps span[data-active="1"]{width:24px;background:var(--accent)}
 body.page-pasajero-solicitud form{background:#ffffff;border:2px solid rgba(148,163,184,.3);border-radius:18px;padding:20px 18px;display:grid;gap:16px;box-shadow:0 12px 32px rgba(15,23,42,.08)}
@@ -278,8 +285,8 @@ body.page-pasajero-asignado .btn.ghost{background:rgba(15,23,42,.65);border:2px 
 
 /* //16.- Flujo pasajero: calificación final */
 body.page-pasajero-calificacion{--bg:#f8fafc;--ink:#0f172a;--muted:#475569;--accent:#d4a016;min-height:100vh;background:linear-gradient(180deg,#fefce8 0%,#f8fafc 35%,#e2e8f0 100%);color:var(--ink)}
-body.page-pasajero-calificacion .wrap{max-width:520px;margin:28px auto 40px;padding:0 18px}
-body.page-pasajero-calificacion header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+body.page-pasajero-calificacion .wrap{max-width:520px;margin:28px auto 40px;padding:0 18px;display:grid;gap:18px;justify-items:center}
+body.page-pasajero-calificacion header{display:grid;align-items:center;gap:12px;margin:0;justify-items:center}
 body.page-pasajero-calificacion .badge{width:54px;height:54px;border-radius:16px;background:linear-gradient(180deg,#e9c862,#c89617);color:#111111;display:grid;place-items:center;box-shadow:0 10px 28px rgba(212,160,22,.3)}
 body.page-pasajero-calificacion .badge svg{width:28px;height:28px}
 body.page-pasajero-calificacion .title{margin:0;font-size:30px;font-weight:900}
@@ -296,10 +303,9 @@ body.page-pasajero-calificacion .confirmation{display:none;margin-top:18px;paddi
 /* //13.- Página "Historial de jornadas" */
 body.page-historial{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink);min-height:100vh}
 body.page-historial .wrap{max-width:680px;margin:26px auto 48px;padding:0 18px;display:grid;gap:18px}
-body.page-historial header{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
-body.page-historial .logo{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;padding:6px;background:none;box-shadow:none;color:#111827}
-body.page-historial .logo img{width:100%;height:100%;object-fit:contain}
-body.page-historial .brand h1{margin:0;font-size:34px;font-weight:900;letter-spacing:.2px;line-height:1}
+body.page-historial header{display:grid;gap:12px;align-items:center;justify-items:center}
+body.page-historial .brand-anchor{margin:0 auto}
+body.page-historial .brand h1{margin:0;font-size:34px;font-weight:900;letter-spacing:.2px;line-height:1;text-align:center}
 body.page-historial .brand h1 span{display:block}
 body.page-historial .brand h1 span:first-child{color:var(--brand-700)}
 body.page-historial .brand h1 span:last-child{color:var(--ink)}
