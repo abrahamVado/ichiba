@@ -4,7 +4,7 @@ export type ScreenInfo = {
   title: string;
   path: string;
   description: string;
-  category: "driver" | "passenger" | "shared";
+  category: "driver" | "passenger" | "shared" | "admin";
 };
 
 //2.- Centralizar el catálogo de pantallas para alimentar los menús y breadcrumbs.
@@ -140,3 +140,5 @@ export const screens: ScreenInfo[] = [
 //3.- Facilitar listas específicas para los menús segmentados por tipo de usuario.
 export const driverScreens = screens.filter((screen) => screen.category === "driver");
 export const passengerScreens = screens.filter((screen) => screen.category === "passenger");
+//4.- Reservar la colección de pantallas administrativas para el nuevo flujo en desarrollo.
+export const adminScreens = screens.filter((screen) => screen.category === "admin");
