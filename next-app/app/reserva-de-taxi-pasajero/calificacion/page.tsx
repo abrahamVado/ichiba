@@ -1,42 +1,50 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useBodyClass } from "../../../lib/useBodyClass";
 
-//1.- Recopilar la calificación final del viaje y agradecer la retroalimentación.
-export default function CalificacionPasajeraPage() {
+//1.- Permitir calificar el viaje replicando la experiencia interactiva original.
+export default function CalificacionPage() {
+  useBodyClass("page-pasajero-calificacion");
   const router = useRouter();
+  const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
   const [confirmation, setConfirmation] = useState<string | null>(null);
 
-  //2.- Registrar la selección de estrellas resaltando la opción activa.
-  const handleSelect = (value: number) => {
+  //2.- Después de mostrar la confirmación, regresar al inicio del flujo.
+  useEffect(() => {
+    if (!confirmation) {
+      return;
+    }
+    const timeout = window.setTimeout(() => {
+      router.push("/reserva-de-taxi-pasajero");
+    }, 2200);
+    return () => window.clearTimeout(timeout);
+  }, [confirmation, router]);
+
+  //3.- Registrar la calificación seleccionada para reflejarla visualmente.
+  const handleSelectRating = (value: number) => {
     setRating(value);
   };
 
-  //3.- Validar y cerrar el flujo mostrando un mensaje antes de regresar al inicio.
+  //4.- Validar y confirmar la evaluación enviada por la pasajera.
   const handleSubmit = () => {
     if (rating === 0) {
       window.alert("Selecciona una calificación para continuar.");
       return;
     }
-    const message = `¡Gracias! Registramos ${rating} estrellas${comment ? " y tu comentario." : "."}`;
-    setConfirmation(message);
-    setTimeout(() => {
-      router.push("/reserva-de-taxi-pasajero");
-    }, 2200);
+    const comment = commentRef.current?.value?.trim();
+    const baseMessage = `¡Gracias! Registramos ${rating} estrellas`;
+    setConfirmation(comment ? `${baseMessage} y tu comentario.` : `${baseMessage}.`);
   };
 
   return (
-    <main className="wrap page-pasajero-calificacion" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -52,7 +60,10 @@ export default function CalificacionPasajeraPage() {
 
       <section className="card">
         <div className="driver">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=256&auto=format&fit=crop" alt="Conductor Laura Martínez" />
+          <img
+            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=256&auto=format&fit=crop"
+            alt="Conductor Laura Martínez"
+          />
           <div className="driver-info">
             <strong>Laura Martínez</strong>
             <span>Toyota Prius Azul · Placas TOS-4821</span>
@@ -67,8 +78,8 @@ export default function CalificacionPasajeraPage() {
                 className="star"
                 type="button"
                 data-active={value <= rating ? "1" : "0"}
-                aria-label={`${value} ${value === 1 ? "estrella" : "estrellas"}`}
-                onClick={() => handleSelect(value)}
+                aria-label={`${value} estrellas`}
+                onClick={() => handleSelectRating(value)}
               >
                 ★
               </button>
@@ -77,25 +88,14 @@ export default function CalificacionPasajeraPage() {
         </div>
         <div>
           <label htmlFor="comment">Comparte un comentario opcional</label>
-          <textarea
-            id="comment"
-            placeholder="Cuéntanos cómo fue el viaje"
-            value={comment}
-            onChange={(event) => setComment(event.target.value)}
-          ></textarea>
+          <textarea id="comment" placeholder="Cuéntanos cómo fue el viaje" ref={commentRef}></textarea>
         </div>
         <button className="btn" type="button" onClick={handleSubmit}>
           Enviar evaluación
         </button>
-        {confirmation ? (
-          <div className="confirmation" role="status">
-            {confirmation}
-          </div>
-        ) : (
-          <div className="confirmation" role="status" style={{ display: "none" }}>
-            ¡Gracias! Tu opinión nos ayuda a mejorar el servicio.
-          </div>
-        )}
+        <div className="confirmation" role="status" style={{ display: confirmation ? "block" : "none" }}>
+          {confirmation || ""}
+        </div>
       </section>
     </main>
   );

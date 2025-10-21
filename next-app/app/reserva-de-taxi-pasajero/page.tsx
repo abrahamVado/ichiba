@@ -1,28 +1,30 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
 
-//1.- Administrar el acceso de pasajeras antes de pasar al formulario de solicitud.
+//1.- Reutilizar la pantalla de login del pasajero con navegación equivalente.
 export default function PasajeroLoginPage() {
+  useBodyClass("page-pasajero-login");
   const router = useRouter();
 
-  //2.- Interceptar el formulario para evitar lógica de autenticación real.
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  //2.- Continuar hacia la solicitud independientemente de la acción tomada.
+  const goToRequest = () => {
     router.push("/reserva-de-taxi-pasajero/solicitud");
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    goToRequest();
+  };
+
   return (
-    <main className="card page-pasajero-login" role="main">
+    <main className="card" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -37,9 +39,9 @@ export default function PasajeroLoginPage() {
           <button className="btn primary" type="submit">
             Continuar
           </button>
-          <Link className="btn ghost" href="/reserva-de-taxi-pasajero/solicitud">
+          <button className="btn ghost" type="button" onClick={goToRequest}>
             Crear cuenta
-          </Link>
+          </button>
         </div>
       </form>
       <div className="secure">

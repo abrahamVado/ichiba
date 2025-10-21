@@ -1,30 +1,38 @@
-import Link from "next/link";
+"use client";
 
-//1.- Cerrar el recorrido regresando a la pantalla de inicio cuando se presiona el botón principal.
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Recrear la pantalla de despedida con su llamada final a la acción.
 export default function TurnoFinalizadoPage() {
+  useBodyClass("page-turno-finalizado");
+  const router = useRouter();
+
+  //2.- Regresar al inicio del flujo cuando se cierra la sesión.
+  const handleLogout = () => {
+    router.push("/");
+  };
+
   return (
-    <main className="wrap page-turno-finalizado">
+    <main className="wrap">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
       <div className="brand">RED TOSUR</div>
       <div className="badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M9.5 16.5 5.8 12.8l1.4-1.4 2.3 2.3 6.3-6.3 1.4 1.4-7.7 7.7Z" />
         </svg>
       </div>
       <div className="h1">Turno finalizado</div>
       <p className="lead">Gracias por su compromiso y responsabilidad. Buen descanso.</p>
-      <Link className="btn" href="/">
+      <button className="btn" type="button" onClick={handleLogout}>
         Cerrar sesión
-      </Link>
+      </button>
 
       <div className="footer" aria-hidden="true">
         <svg className="van" viewBox="0 0 620 180" fill="none">

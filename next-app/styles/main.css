@@ -9,8 +9,8 @@ button,input,textarea{font:inherit}
 /* //1.1.- Estandarizar el pin de marca para todas las páginas */
 .brand-anchor{display:grid;place-items:center;margin:12px auto 8px;text-align:center}
 .brand-pin{width:120px;height:120px;position:relative;display:grid;place-items:center;margin:0}
-.brand-pin .badge{width:120px;height:120px;border-radius:50%;background:#000000;border:1px solid #a8a8a8;box-shadow:inset 0 2px 4px rgba(0,0,0,.12);display:grid;place-items:center;position:relative;z-index:2;padding:6px;color:#f5d67a;text-transform:uppercase;letter-spacing:.4em;font-weight:900;font-size:24px}
-.brand-badge__label{display:block;width:100%;text-align:center}
+.brand-pin .badge{width:120px;height:120px;border-radius:50%;background:#000000;border:1px solid #a8a8a8;box-shadow:inset 0 2px 4px rgba(0,0,0,.12);display:grid;place-items:center;position:relative;z-index:2;padding:6px}
+.brand-pin .badge img{width:100%;height:100%;object-fit:contain}
 .title{text-align:center}
 
 /* //2.- Página "Bienvenido a tu jornada" */
@@ -34,7 +34,9 @@ body.page-bienvenido .pin .badge{
 /* kill the gold base */
 body.page-bienvenido .pin::after{ content:none; }
 
-body.page-bienvenido .brand-badge__label{color:#f5d67a}
+body.page-bienvenido .pin .badge img{
+  width:100%;height:100%;object-fit:contain;
+}
 
 body.page-bienvenido h1{font-size:40px;font-weight:900;margin:8px 0 10px;letter-spacing:.2px}
 body.page-bienvenido .title{font-size:30px;font-weight:800;margin:8px 0 2px}
@@ -75,9 +77,9 @@ body.page-registro-base{--bg:#f8f8f8;--ink:#0f172a;--muted:#6b7280;--brand:#d4a0
 body.page-registro-base .wrap{max-width:520px;margin:20px auto 40px;padding:0 18px;text-align:center;position:relative}
 body.page-registro-base .wrap:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 50% -200px,rgba(0,0,0,.035),transparent 60%),repeating-linear-gradient(25deg,transparent 0 44px,rgba(0,0,0,.03) 44px 45px),repeating-linear-gradient(-18deg,transparent 0 60px,rgba(0,0,0,.025) 60px 61px);filter:contrast(.9) brightness(1.02)}
 body.page-registro-base .pin{width:84px;height:84px;margin:6px auto 8px;position:relative;display:grid;place-items:center}
-body.page-registro-base .pin .badge{width:84px;height:84px;border-radius:50%;background:none;box-shadow:none;display:grid;place-items:center;position:relative;z-index:2;padding:6px;color:#111827;letter-spacing:.36em;font-size:20px}
+body.page-registro-base .pin .badge{width:84px;height:84px;border-radius:50%;background:none;box-shadow:none;display:grid;place-items:center;position:relative;z-index:2;padding:6px}
 body.page-registro-base .pin:after{content:"";position:absolute;inset:42px 20px -18px;transform:skewY(-10deg);background:radial-gradient(60% 80% at 50% 0,#c79618,#8a6b10);border-radius:14px 14px 22px 22px;z-index:1;opacity:.92}
-
+body.page-registro-base .pin .badge img{width:100%;height:100%;object-fit:contain}
 body.page-registro-base h1{font-size:38px;font-weight:900;margin:8px 0 2px;letter-spacing:.2px}
 body.page-registro-base .title{font-size:34px;font-weight:900;margin:12px 0 6px}
 body.page-registro-base .lead{font-size:18px;color:#1f2937;margin:0 0 18px}
@@ -272,8 +274,7 @@ body.page-pasajero-asignado .avatar{width:88px;height:88px;border-radius:18px;ba
 body.page-pasajero-asignado .name{font-size:22px;font-weight:800}
 body.page-pasajero-asignado .rating{display:flex;align-items:center;gap:6px;color:#facc15;font-weight:700}
 body.page-pasajero-asignado .vehicle{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;background:rgba(15,23,42,.65);border-radius:14px;padding:14px;border:1px solid rgba(148,163,184,.35)}
-body.page-pasajero-asignado .vehicle-photo{width:100%;height:64px;border-radius:12px;border:2px solid rgba(212,160,22,.35);box-shadow:0 6px 16px rgba(0,0,0,.22);background:linear-gradient(135deg,#1f2937,#0b1321);position:relative;overflow:hidden}
-body.page-pasajero-asignado .vehicle-photo::after{content:"";position:absolute;inset:12px;border-radius:8px;border:2px dashed rgba(245,214,122,.6)}
+body.page-pasajero-asignado .vehicle-photo{width:100%;height:64px;border-radius:12px;object-fit:cover;border:2px solid rgba(212,160,22,.35);box-shadow:0 6px 16px rgba(0,0,0,.22)}
 body.page-pasajero-asignado .info{display:grid;gap:4px;color:var(--muted);font-size:15px}
 body.page-pasajero-asignado .info strong{color:#f8fafc;font-size:16px}
 body.page-pasajero-asignado .note{color:var(--muted);font-size:14px;margin:0}

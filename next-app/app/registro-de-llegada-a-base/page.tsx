@@ -1,16 +1,29 @@
-import Link from "next/link";
+"use client";
 
-//1.- Mostrar la tarjeta de registro manteniendo los accesos a mapa y formulario manual.
-export default function RegistroDeLlegadaABasePage() {
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Restaurar la pantalla de registro con QR incluyendo sus acciones originales.
+export default function RegistroBasePage() {
+  useBodyClass("page-registro-base");
+  const router = useRouter();
+
+  //2.- Simular el escaneo del código QR navegando a la vista con mapa.
+  const goToMap = () => {
+    router.push("/registro-de-llegada-a-base-mapa");
+  };
+
+  //3.- Redirigir al formulario manual cuando el usuario prefiera esa opción.
+  const goToManual = () => {
+    router.push("/registro-de-llegada-manual");
+  };
+
   return (
-    <main className="wrap page-registro-base" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -34,12 +47,12 @@ export default function RegistroDeLlegadaABasePage() {
         <rect x="48" y="46" width="10" height="4" rx="1" />
       </svg>
 
-      <Link className="btn" href="/registro-de-llegada-a-base-mapa">
+      <button className="btn" type="button" onClick={goToMap}>
         Escanear código QR
-      </Link>
-      <Link className="link" href="/registro-de-llegada-manual">
+      </button>
+      <button className="link" type="button" onClick={goToManual}>
         Registrar manualmente
-      </Link>
+      </button>
 
       <div className="place">Minatitlán</div>
 

@@ -1,36 +1,42 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useBodyClass } from "../../../lib/useBodyClass";
 
-//1.- Capturar los datos básicos de la reserva antes de avanzar al estado asignado.
-export default function SolicitudPasajeraPage() {
+//1.- Construir el formulario de solicitud replicando la interacción original.
+export default function SolicitudPage() {
+  useBodyClass("page-pasajero-solicitud");
   const router = useRouter();
-  const [scheduled, setScheduled] = useState("");
+  const timeRef = useRef<HTMLInputElement | null>(null);
 
-  //2.- Establecer una hora sugerida diez minutos adelante cuando la vista carga.
+  //2.- Prellenar el campo de horario con una sugerencia si está vacío.
   useEffect(() => {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + 10);
-    setScheduled(now.toISOString().slice(0, 16));
+    const input = timeRef.current;
+    if (input && !input.value) {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() + 10);
+      input.value = now.toISOString().slice(0, 16);
+    }
   }, []);
 
-  //3.- Simular el envío de la solicitud y continuar al detalle del conductor asignado.
+  //3.- Enviar la solicitud hacia la pantalla de asignación del conductor.
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push("/reserva-de-taxi-pasajero/asignado");
   };
 
+  //4.- Permitir cambiar de cuenta regresando al paso anterior.
+  const handleChangeAccount = () => {
+    router.push("/reserva-de-taxi-pasajero");
+  };
+
   return (
-    <main className="wrap page-pasajero-solicitud" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -59,11 +65,11 @@ export default function SolicitudPasajeraPage() {
         <div className="row">
           <div>
             <label htmlFor="time">Hora de recogida</label>
-            <input className="input" id="time" type="datetime-local" required value={scheduled} onChange={(event) => setScheduled(event.target.value)} />
+            <input className="input" id="time" type="datetime-local" required ref={timeRef} />
           </div>
           <div>
             <label htmlFor="riders">Pasajeros</label>
-            <select id="riders" defaultValue="1" required>
+            <select id="riders" required>
               <option value="1">1 pasajero</option>
               <option value="2">2 pasajeros</option>
               <option value="3">3 pasajeros</option>
@@ -76,9 +82,9 @@ export default function SolicitudPasajeraPage() {
           <textarea id="notes" placeholder="Añade referencias para el punto de encuentro"></textarea>
         </div>
         <div className="row">
-          <Link className="back-link" href="/reserva-de-taxi-pasajero">
+          <button className="back-link" type="button" onClick={handleChangeAccount}>
             ← Cambiar cuenta
-          </Link>
+          </button>
           <button className="btn" type="submit">
             Confirmar solicitud
           </button>

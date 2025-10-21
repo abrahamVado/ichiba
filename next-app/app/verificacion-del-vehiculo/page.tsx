@@ -1,17 +1,25 @@
-import Link from "next/link";
+"use client";
 
-//1.- Presentar la lista de verificación manteniendo la estética original.
-export default function VerificacionDelVehiculoPage() {
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Mantener la composición original de la verificación del vehículo.
+export default function VerificacionPage() {
+  useBodyClass("page-verificacion");
+  const router = useRouter();
+
+  //2.- Finalizar la revisión encaminando al registro de llegada a base.
+  const handleComplete = () => {
+    router.push("/registro-de-llegada-a-base");
+  };
+
   return (
-    <main className="wrap page-verificacion" role="main">
+    <main className="wrap" role="main">
       <header aria-label="Marca" className="brand-header">
         <div className="brand-anchor" aria-hidden="true">
           <div className="pin brand-pin">
             <div className="badge brand-badge">
-                          <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+              <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
             </div>
           </div>
         </div>
@@ -52,33 +60,59 @@ export default function VerificacionDelVehiculoPage() {
       </div>
 
       <section className="list" aria-labelledby="chk">
-        {[
-          { icon: "🚗", label: "Exterior limpio" },
-          { icon: "🧼", label: "Interior sin objetos olvidados" },
-          { icon: "🔧", label: "Llantas en buen estado" },
-          { icon: "⛽", label: "Combustible suficiente" },
-          { icon: "💡", label: "Luces y cámaras funcionando" },
-          { icon: "🧾", label: "Entrega de efectivo (si aplica)", custom: true }
-        ].map((item) => (
-          <div className="item" key={item.label}>
-            <div className="icon" aria-hidden="true">
-              {item.icon}
-            </div>
-            <div className="label">{item.label}</div>
-            <div className="actions">
-              <div className="chip ok">✓</div>
-              <div className="chip warn">!</div>
-              {item.custom ? (
-                <>
-                  <div className="chip" style={{ borderColor: "#e0c27a", color: "#d4a016" }}>
-                    ✓
-                  </div>
-                  <div className="chip" style={{ borderColor: "#e0c27a", color: "#d4a016", background: "#fff" }}></div>
-                </>
-              ) : null}
-            </div>
+        <div className="item">
+          <div className="icon">🚗</div>
+          <div className="label">Exterior limpio</div>
+          <div className="actions">
+            <div className="chip ok">✓</div>
+            <div className="chip warn">!</div>
           </div>
-        ))}
+        </div>
+
+        <div className="item">
+          <div className="icon">🧼</div>
+          <div className="label">Interior sin objetos olvidados</div>
+          <div className="actions">
+            <div className="chip ok">✓</div>
+            <div className="chip warn">!</div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="icon">🔧</div>
+          <div className="label">Llantas en buen estado</div>
+          <div className="actions">
+            <div className="chip ok">✓</div>
+            <div className="chip warn">!</div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="icon">⛽</div>
+          <div className="label">Combustible suficiente</div>
+          <div className="actions">
+            <div className="chip ok">✓</div>
+            <div className="chip warn">!</div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="icon">💡</div>
+          <div className="label">Luces y cámaras funcionando</div>
+          <div className="actions">
+            <div className="chip ok">✓</div>
+            <div className="chip warn">!</div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="icon">🧾</div>
+          <div className="label">Entrega de efectivo (si aplica)</div>
+          <div className="actions">
+            <div className="chip" style={{ borderColor: "#e0c27a", color: "#d4a016" }}>✓</div>
+            <div className="chip" style={{ borderColor: "#e0c27a", color: "#d4a016", background: "#fff" }}></div>
+          </div>
+        </div>
       </section>
 
       <div className="field">
@@ -91,9 +125,9 @@ export default function VerificacionDelVehiculoPage() {
         </div>
       </div>
 
-      <Link className="btn" href="/registro-de-llegada-a-base">
+      <button className="btn" type="button" onClick={handleComplete}>
         Finalizar revisión y cerrar turno
-      </Link>
+      </button>
     </main>
   );
 }

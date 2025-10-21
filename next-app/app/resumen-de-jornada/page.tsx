@@ -1,17 +1,30 @@
-import Link from "next/link";
+"use client";
 
-//1.- Presentar los indicadores principales del turno con navegación a pasos posteriores.
-export default function ResumenDeJornadaPage() {
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Recuperar la pantalla de resumen conservando datos y navegación.
+export default function ResumenPage() {
+  useBodyClass("page-resumen");
+  const router = useRouter();
+
+  //2.- Avanzar al mensaje final cuando se cierra el turno.
+  const handleCloseShift = () => {
+    router.push("/turno-finalizado");
+  };
+
+  //3.- Permitir revisar el historial de jornadas desde el mismo flujo.
+  const handleHistory = () => {
+    router.push("/historial-de-jornadas");
+  };
+
   return (
-    <main className="wrap page-resumen" role="main">
+    <main className="wrap" role="main">
       <header aria-label="Marca" className="brand-header">
         <div className="brand-anchor" aria-hidden="true">
           <div className="pin brand-pin">
             <div className="badge brand-badge">
-                          <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+              <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
             </div>
           </div>
         </div>
@@ -27,17 +40,25 @@ export default function ResumenDeJornadaPage() {
       <p className="lead">Gracias por su servicio. A continuación se muestra el resumen de su turno.</p>
 
       <section className="card" aria-labelledby="resumen">
-        {[ 
-          { label: "Viajes completados", value: "7" },
-          { label: "Horas de servicio", value: "8\u00a0h\u00a015\u00a0min", className: "hrs" },
-          { label: "Kilómetros recorridos", value: "94\u00a0km", className: "km" },
-          { label: "Pagos en línea", value: "$\u00a0420,00\u00a0MXN" }
-        ].map((item) => (
-          <div className="row" key={item.label}>
-            <div className="label">{item.label}</div>
-            <div className={`value ${item.className ?? ""}`.trim()}>{item.value}</div>
-          </div>
-        ))}
+        <div className="row">
+          <div className="label">Viajes completados</div>
+          <div className="value">7</div>
+        </div>
+
+        <div className="row">
+          <div className="label">Horas de servicio</div>
+          <div className="value hrs">8&nbsp;h&nbsp;15&nbsp;min</div>
+        </div>
+
+        <div className="row">
+          <div className="label">Kilómetros recorridos</div>
+          <div className="value km">94&nbsp;km</div>
+        </div>
+
+        <div className="row">
+          <div className="label">Pagos en línea</div>
+          <div className="value">$&nbsp;420,00&nbsp;MXN</div>
+        </div>
 
         <div className="row">
           <div>
@@ -58,12 +79,12 @@ export default function ResumenDeJornadaPage() {
       </section>
 
       <div className="actions">
-        <Link className="btn primary" href="/turno-finalizado">
+        <button className="btn primary" type="button" onClick={handleCloseShift}>
           Cerrar turno y salir
-        </Link>
-        <Link className="btn ghost" href="/historial-de-jornadas">
+        </button>
+        <button className="btn ghost" type="button" onClick={handleHistory}>
           Ver historial completo
-        </Link>
+        </button>
       </div>
 
       <p className="fine">Demo UI sin datos reales.</p>

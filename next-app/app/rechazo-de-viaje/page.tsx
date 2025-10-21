@@ -1,16 +1,29 @@
-import Link from "next/link";
+"use client";
 
-//1.- Reproducir la confirmación de rechazo con accesos al mapa y al cierre del turno.
-export default function RechazoDeViajePage() {
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Conservar el formulario de rechazo con su navegación original.
+export default function RechazoPage() {
+  useBodyClass("page-rechazo");
+  const router = useRouter();
+
+  //2.- Regresar al mapa si el conductor decide cancelar el rechazo.
+  const handleBack = () => {
+    router.push("/registro-de-llegada-a-base-mapa");
+  };
+
+  //3.- Continuar el flujo hacia el regreso a base tras confirmar el rechazo.
+  const handleConfirm = () => {
+    router.push("/regreso-a-base-asignada");
+  };
+
   return (
-    <main className="wrap page-rechazo" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -30,12 +43,22 @@ export default function RechazoDeViajePage() {
 
         <fieldset className="reasons" aria-labelledby="rechazo-title">
           <legend className="sr-only">Motivos de rechazo</legend>
-          {["Fuera de cobertura", "Pasajero no localizado", "Condiciones inseguras", "Otro motivo"].map((reason) => (
-            <label className="reason" key={reason}>
-              <input type="checkbox" />
-              <span>{reason}</span>
-            </label>
-          ))}
+          <label className="reason">
+            <input type="checkbox" />
+            <span>Fuera de cobertura</span>
+          </label>
+          <label className="reason">
+            <input type="checkbox" />
+            <span>Pasajero no localizado</span>
+          </label>
+          <label className="reason">
+            <input type="checkbox" />
+            <span>Condiciones inseguras</span>
+          </label>
+          <label className="reason">
+            <input type="checkbox" />
+            <span>Otro motivo</span>
+          </label>
         </fieldset>
 
         <div className="field">
@@ -44,12 +67,12 @@ export default function RechazoDeViajePage() {
         </div>
 
         <div className="actions">
-          <Link className="btn ghost" href="/registro-de-llegada-a-base-mapa">
+          <button className="btn ghost" type="button" onClick={handleBack}>
             Volver al mapa
-          </Link>
-          <Link className="btn primary" href="/regreso-a-base-asignada">
+          </button>
+          <button className="btn primary" type="button" onClick={handleConfirm}>
             Confirmar rechazo
-          </Link>
+          </button>
         </div>
       </section>
     </main>

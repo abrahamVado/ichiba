@@ -2,31 +2,30 @@
 
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
 
-//1.- Permitir que el formulario simulado conduzca a la verificación vehicular.
-export default function BienvenidoATuJornadaPage() {
+//1.- Recrear el formulario de inicio de jornada preservando estilos y contenido.
+export default function BienvenidoPage() {
+  useBodyClass("page-bienvenido");
   const router = useRouter();
 
-  //2.- Interceptar el envío del formulario evitando validaciones reales.
+  //2.- Anclar el envío del formulario hacia la verificación vehicular.
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push("/verificacion-del-vehiculo");
   };
 
-  //3.- Reutilizar el mismo destino para el botón de escaneo QR dentro del demo.
+  //3.- Igualar el botón de escaneo QR con el mismo destino del formulario.
   const handleScan = () => {
     router.push("/verificacion-del-vehiculo");
   };
 
   return (
-    <main className="wrap page-bienvenido" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -40,7 +39,13 @@ export default function BienvenidoATuJornadaPage() {
 
       <form className="form" onSubmit={handleSubmit}>
         <input className="input" type="text" placeholder="Usuario o ID de empleado" aria-label="Usuario o ID de empleado" />
-        <input className="input" type="password" inputMode="numeric" placeholder="PIN de acceso" aria-label="PIN de acceso" />
+        <input
+          className="input"
+          type="password"
+          inputMode="numeric"
+          placeholder="PIN de acceso"
+          aria-label="PIN de acceso"
+        />
         <button className="btn primary" type="submit">
           Iniciar turno
         </button>

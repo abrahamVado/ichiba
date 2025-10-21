@@ -1,37 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../../lib/useBodyClass";
 
-//1.- Mostrar la tarjeta de conductor asignado calculando una hora estimada de llegada.
-export default function AsignadoPasajeraPage() {
-  const [eta, setEta] = useState("a las 00:00 hrs");
+//1.- Representar la asignación del conductor con información dinámica.
+export default function AsignadoPage() {
+  useBodyClass("page-pasajero-asignado");
+  const router = useRouter();
+  const timeRef = useRef<HTMLSpanElement | null>(null);
 
-  //2.- Actualizar la hora aproximada ocho minutos después del tiempo actual.
+  //2.- Calcular una hora estimada de recogida al cargar la pantalla.
   useEffect(() => {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + 8);
-    const formatter = new Intl.DateTimeFormat("es-MX", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-    setEta(`a las ${formatter.format(now)} hrs`);
+    const span = timeRef.current;
+    if (span) {
+      const eta = new Date();
+      eta.setMinutes(eta.getMinutes() + 8);
+      const formatter = new Intl.DateTimeFormat("es-MX", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      span.textContent = `a las ${formatter.format(eta)} hrs`;
+    }
   }, []);
 
-  //3.- Simular el envío de un mensaje directo mediante una alerta temporal.
+  //3.- Continuar hacia la calificación al finalizar el viaje.
+  const handleOnboard = () => {
+    router.push("/reserva-de-taxi-pasajero/calificacion");
+  };
+
+  //4.- Simular el envío de mensajes al conductor dentro del demo.
   const handleMessage = () => {
     window.alert("Tu mensaje fue enviado a Laura. Te responderá en un momento.");
   };
 
   return (
-    <main className="wrap page-pasajero-asignado" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -45,7 +53,7 @@ export default function AsignadoPasajeraPage() {
         <div>
           <h1 className="title">Conductor asignado</h1>
           <div className="time">
-            Recogida programada <span>{eta}</span>
+            Recogida programada <span ref={timeRef}></span>
           </div>
         </div>
       </header>
@@ -64,7 +72,12 @@ export default function AsignadoPasajeraPage() {
           </div>
         </div>
         <div className="vehicle">
-          <div className="vehicle-photo" role="presentation" aria-hidden="true" />
+          <img
+            className="vehicle-photo"
+            src="/assets/images/vehicles/5.jpeg"
+            alt="Vehículo Toyota Prius Azul 2023 de Red TOSUR"
+            loading="lazy"
+          />
           <div className="info">
             <strong>Toyota Prius Azul — 2023</strong>
             <span>Placas: TOS-4821</span>
@@ -75,9 +88,9 @@ export default function AsignadoPasajeraPage() {
           Laura llegará al punto indicado y esperará 5 minutos. Ten tu equipaje listo y confirma tu identidad al abordar.
         </p>
         <div className="actions">
-          <Link className="btn primary" href="/reserva-de-taxi-pasajero/calificacion">
+          <button className="btn primary" type="button" onClick={handleOnboard}>
             Ya estoy a bordo
-          </Link>
+          </button>
           <button className="btn ghost" type="button" onClick={handleMessage}>
             Enviar mensaje
           </button>

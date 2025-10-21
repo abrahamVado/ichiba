@@ -2,31 +2,30 @@
 
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
 
-//1.- Permitir la navegación entre los caminos manual y asistido del registro.
-export default function RegistroDeLlegadaManualPage() {
+//1.- Reimplementar el formulario manual respetando campos y comportamiento.
+export default function RegistroManualPage() {
+  useBodyClass("page-bienvenido");
   const router = useRouter();
 
-  //2.- Volver al registro principal cuando se elige solo guardar los datos.
-  const handleGuardar = () => {
+  //2.- Volver a la pantalla de QR cuando se elige guardar sin continuar.
+  const handleSave = () => {
     router.push("/registro-de-llegada-a-base");
   };
 
-  //3.- Continuar al mapa tras enviar la captura manual para seguir el flujo guiado.
+  //3.- Dirigir el envío del formulario hacia la vista del mapa.
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push("/registro-de-llegada-a-base-mapa");
   };
 
   return (
-    <main className="wrap page-bienvenido" role="main">
+    <main className="wrap" role="main">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -59,10 +58,10 @@ export default function RegistroDeLlegadaManualPage() {
         <label className="sr-only" htmlFor="comments">
           Comentarios
         </label>
-        <textarea id="comments" className="input textarea" name="comments" rows={3} placeholder="Comentarios opcionales"></textarea>
+        <textarea id="comments" className="input textarea" name="comments" rows={3} placeholder="Comentarios opcionales" />
 
         <div className="actions">
-          <button className="btn ghost" type="button" onClick={handleGuardar}>
+          <button className="btn ghost" type="button" onClick={handleSave}>
             Guardar
           </button>
           <button className="btn primary" type="submit">

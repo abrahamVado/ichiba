@@ -1,16 +1,24 @@
-import Link from "next/link";
+"use client";
 
-//1.- Recrear la pantalla de autenticación permitiendo avanzar al siguiente paso.
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
+
+//1.- Reproducir la estructura original de la pantalla de acceso oscuro.
 export default function LoginOscuroPage() {
+  useBodyClass("page-login-oscuro");
+  const router = useRouter();
+
+  //2.- Encaminar todas las acciones de autenticación hacia el siguiente paso del flujo.
+  const goToTerms = () => {
+    router.push("/terminos-y-condiciones");
+  };
+
   return (
-    <main className="wrap page-login-oscuro">
+    <main className="wrap">
       <div className="brand-anchor" aria-hidden="true">
         <div className="pin brand-pin">
           <div className="badge brand-badge">
-            <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+            <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
           </div>
         </div>
       </div>
@@ -23,29 +31,28 @@ export default function LoginOscuroPage() {
             🇲🇽
           </span>
         </div>
-        <input className="input" type="tel" value="+52 222 123 4567" readOnly aria-label="Teléfono" />
+        <input className="input" type="tel" defaultValue="+52 222 123 4567" aria-label="Teléfono" />
         <div className="icon" aria-hidden="true">
           👤➔
         </div>
       </div>
 
-      {/* //2.- Utilizar enlaces para simular el flujo sin lógica de formularios reales. */}
-      <Link className="btn primary" href="/terminos-y-condiciones">
+      <button className="btn primary" type="button" onClick={goToTerms}>
         Continuar
-      </Link>
+      </button>
 
       <div className="sep">•</div>
 
       <div className="alt">
-        <Link className="btn" href="/terminos-y-condiciones">
+        <button className="btn" type="button" onClick={goToTerms}>
           G&nbsp;&nbsp;Continuar con Google
-        </Link>
-        <Link className="btn" href="/terminos-y-condiciones">
+        </button>
+        <button className="btn" type="button" onClick={goToTerms}>
           &nbsp;&nbsp;Continuar con Apple
-        </Link>
-        <Link className="btn" href="/terminos-y-condiciones">
+        </button>
+        <button className="btn" type="button" onClick={goToTerms}>
           ✉️&nbsp;&nbsp;Continuar con el email
-        </Link>
+        </button>
       </div>
 
       <p className="notice">Al continuar, aceptas recibir llamadas o mensajes para verificación.</p>

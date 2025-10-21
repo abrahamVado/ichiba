@@ -1,41 +1,43 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useBodyClass } from "../../lib/useBodyClass";
 
-//1.- Gestionar filtros ficticios para simular interactividad en el historial.
-export default function HistorialDeJornadasPage() {
-  const [filters, setFilters] = useState({ inicio: "", fin: "", busqueda: "" });
+//1.- Recrear el historial con controles de filtro funcionales como en el HTML original.
+export default function HistorialPage() {
+  useBodyClass("page-historial");
+  const router = useRouter();
+  const startRef = useRef<HTMLInputElement | null>(null);
+  const endRef = useRef<HTMLInputElement | null>(null);
+  const searchRef = useRef<HTMLInputElement | null>(null);
 
-  //2.- Actualizar el estado local cuando cambian los campos de filtrado.
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    setFilters((current) => ({
-      ...current,
-      [id === "fecha-inicio" ? "inicio" : id === "fecha-fin" ? "fin" : "busqueda"]: value
-    }));
-  };
-
-  //3.- Simular la aplicación de filtros mostrando un mensaje.
+  //2.- Simular la aplicación de filtros avisando que se trata de un demo.
   const handleApply = () => {
     window.alert("Filtros aplicados al historial (demo).");
   };
 
-  //4.- Reiniciar los campos y permitir volver al resumen del turno.
+  //3.- Limpiar los campos para permitir nuevos criterios de búsqueda.
   const handleClear = () => {
-    setFilters({ inicio: "", fin: "", busqueda: "" });
+    [startRef.current, endRef.current, searchRef.current].forEach((input) => {
+      if (input) {
+        input.value = "";
+      }
+    });
+  };
+
+  //4.- Volver al resumen de jornada para continuar con el flujo principal.
+  const handleBack = () => {
+    router.push("/resumen-de-jornada");
   };
 
   return (
-    <main className="wrap page-historial" role="main">
+    <main className="wrap" role="main">
       <header aria-label="Marca" className="brand-header">
         <div className="brand-anchor" aria-hidden="true">
           <div className="pin brand-pin">
             <div className="badge brand-badge">
-                          <span className="brand-badge__label" aria-hidden="true">
-              RT
-            </span>
-            <span className="sr-only">Logo de Red TOSUR</span>
+              <img src="/assets/images/logo/logo.png" alt="Logo de Red TOSUR" loading="lazy" />
             </div>
           </div>
         </div>
@@ -55,26 +57,19 @@ export default function HistorialDeJornadasPage() {
           <label className="label" htmlFor="fecha-inicio">
             Fecha de inicio
           </label>
-          <input id="fecha-inicio" type="date" className="value" value={filters.inicio} onChange={handleChange} />
+          <input id="fecha-inicio" type="date" className="value" ref={startRef} />
         </div>
         <div className="row">
           <label className="label" htmlFor="fecha-fin">
             Fecha de fin
           </label>
-          <input id="fecha-fin" type="date" className="value" value={filters.fin} onChange={handleChange} />
+          <input id="fecha-fin" type="date" className="value" ref={endRef} />
         </div>
         <div className="row">
           <label className="label" htmlFor="buscar">
             Buscar por base o nota
           </label>
-          <input
-            id="buscar"
-            type="search"
-            placeholder="Ej. Base Central"
-            className="value"
-            value={filters.busqueda}
-            onChange={handleChange}
-          />
+          <input id="buscar" type="search" placeholder="Ej. Base Central" className="value" ref={searchRef} />
         </div>
         <div className="row actions">
           <button className="btn primary" type="button" onClick={handleApply}>
@@ -107,46 +102,44 @@ export default function HistorialDeJornadasPage() {
       </section>
 
       <section className="listado" aria-label="Listado de jornadas pasadas">
-        {[ 
-          {
-            id: "jornada-1",
-            title: "Jornada 14 de agosto",
-            summary: "Base: Central | 6 viajes | 08:00 – 16:00",
-            amount: "$\u00a0320.00\u00a0MXN",
-            detail: "Turno sin incidencias. Se entregó efectivo en tiempo y forma."
-          },
-          {
-            id: "jornada-2",
-            title: "Jornada 13 de agosto",
-            summary: "Base: Sur | 7 viajes | 09:00 – 17:15",
-            amount: "$\u00a0410.00\u00a0MXN",
-            detail: "Se registró un reporte por pasajero que olvidó pertenencias. Atención concluida."
-          },
-          {
-            id: "jornada-3",
-            title: "Jornada 12 de agosto",
-            summary: "Base: Norte | 5 viajes | 07:30 – 14:45",
-            amount: "$\u00a0280.00\u00a0MXN",
-            detail: "Turno parcial para cubrir horario matutino. Sin reportes adicionales."
-          }
-        ].map((item) => (
-          <article className="card jornada" aria-labelledby={item.id} key={item.id}>
-            <header className="row">
-              <div>
-                <h3 id={item.id}>{item.title}</h3>
-                <small>{item.summary}</small>
-              </div>
-              <div className="value" dangerouslySetInnerHTML={{ __html: item.amount }} />
-            </header>
-            <p>{item.detail}</p>
-          </article>
-        ))}
+        <article className="card jornada" aria-labelledby="jornada-1">
+          <header className="row">
+            <div>
+              <h3 id="jornada-1">Jornada 14 de agosto</h3>
+              <small>Base: Central | 6 viajes | 08:00 – 16:00</small>
+            </div>
+            <div className="value">$&nbsp;320.00&nbsp;MXN</div>
+          </header>
+          <p>Turno sin incidencias. Se entregó efectivo en tiempo y forma.</p>
+        </article>
+
+        <article className="card jornada" aria-labelledby="jornada-2">
+          <header className="row">
+            <div>
+              <h3 id="jornada-2">Jornada 13 de agosto</h3>
+              <small>Base: Sur | 7 viajes | 09:00 – 17:15</small>
+            </div>
+            <div className="value">$&nbsp;410.00&nbsp;MXN</div>
+          </header>
+          <p>Se registró un reporte por pasajero que olvidó pertenencias. Atención concluida.</p>
+        </article>
+
+        <article className="card jornada" aria-labelledby="jornada-3">
+          <header className="row">
+            <div>
+              <h3 id="jornada-3">Jornada 12 de agosto</h3>
+              <small>Base: Norte | 5 viajes | 07:30 – 14:45</small>
+            </div>
+            <div className="value">$&nbsp;280.00&nbsp;MXN</div>
+          </header>
+          <p>Turno parcial para cubrir horario matutino. Sin reportes adicionales.</p>
+        </article>
       </section>
 
       <div className="actions">
-        <Link className="btn ghost" href="/resumen-de-jornada">
+        <button className="btn ghost" type="button" onClick={handleBack}>
           Volver al resumen
-        </Link>
+        </button>
       </div>
 
       <p className="fine">Demo UI sin datos reales.</p>
