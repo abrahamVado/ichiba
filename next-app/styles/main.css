@@ -20,6 +20,34 @@ button,input,textarea{font:inherit}
 .brand-pin .badge img{width:100%;height:100%;object-fit:contain}
 .title{text-align:center}
 
+/* //1.3.- Portada principal con héroe y menús segmentados por rol */
+body.page-home{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--accent:#d4a016;background:var(--bg);color:var(--ink);min-height:100vh}
+body.page-home .home-layout{max-width:1120px;margin:0 auto;padding:36px 18px 64px;display:grid;gap:32px}
+body.page-home .home-hero{background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:36px 24px 42px;text-align:center;display:grid;gap:18px;box-shadow:0 24px 60px rgba(15,23,42,.08)}
+body.page-home .home-title{margin:0;font-size:42px;font-weight:900;letter-spacing:.2px}
+body.page-home .home-lead{margin:0 auto;max-width:560px;font-size:18px;color:var(--muted);line-height:1.5}
+body.page-home .home-cta-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:8px 0 6px}
+body.page-home .home-cta{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;font-size:18px;padding:14px 18px;border-radius:14px;transition:filter .15s ease,transform .15s ease}
+body.page-home .home-cta--primary{background:linear-gradient(180deg,#e9c862,#c89617);color:#111111;box-shadow:0 12px 26px rgba(201,150,23,.24)}
+body.page-home .home-cta--secondary{background:#ffffff;color:#111111;border:2px solid var(--line);box-shadow:0 8px 22px rgba(15,23,42,.08)}
+body.page-home .home-cta--ghost{background:#ffffff;color:#111111;border:2px dashed var(--line)}
+body.page-home .home-cta:hover{filter:brightness(.97);transform:translateY(-1px)}
+body.page-home .home-cta--disabled{cursor:default;opacity:.65;filter:none}
+body.page-home .home-cta--disabled:hover{transform:none}
+body.page-home .home-fine{margin:4px 0 0;color:var(--muted);font-size:14px}
+body.page-home .home-skyline{width:220px;margin:0 auto;color:var(--accent);opacity:.9}
+body.page-home .home-directory{display:grid;gap:20px}
+body.page-home .home-menu-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+body.page-home .menu-section{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:24px 22px 20px;box-shadow:0 18px 48px rgba(15,23,42,.06);display:grid;gap:16px}
+body.page-home .menu-section header h2{margin:0;font-size:26px;font-weight:800}
+body.page-home .menu-section header p{margin:4px 0 0;font-size:16px;color:var(--muted)}
+body.page-home .menu-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+body.page-home .menu-link{display:grid;gap:4px;text-decoration:none;background:#ffffff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;transition:border-color .15s ease,box-shadow .15s ease}
+body.page-home .menu-link:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(212,160,22,.18)}
+body.page-home .menu-link__title{font-weight:800;font-size:18px;color:var(--ink)}
+body.page-home .menu-link__desc{color:var(--muted);font-size:14px;line-height:1.45}
+@media (max-width:720px){body.page-home .home-title{font-size:34px}body.page-home .home-lead{font-size:16px}body.page-home .home-layout{padding:28px 16px 48px}}
+
 /* //2.- Página "Bienvenido a tu jornada" */
 body.page-bienvenido{--bg:#fbfbfb;--ink:#0f172a;--muted:#6b7280;--card:#ffffff;--line:#e5e7eb;--brand:#d4a016;--brand-700:#b8870f;background:var(--bg);color:var(--ink)}
 body.page-bienvenido .wrap{max-width:520px;margin:22px auto 40px;padding:0 16px;text-align:center}
