@@ -1,0 +1,5 @@
+/* //1.- Importar las fuentes compartidas utilizadas en el prototipo original */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+/* //2.- Hacer disponible el CSS original dentro del entorno Next.js */
+@import '../styles/main.css';
